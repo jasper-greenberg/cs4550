@@ -1,0 +1,18 @@
+.no-style-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.no-style-link:hover {
+    text-decoration: underline;
+}
+
+.card-image {
+    object-fit: cover;
+    object-position: center;
+    height: 200px;
+}
+
+.custom-card {
+    min-width: 264px;
+}
