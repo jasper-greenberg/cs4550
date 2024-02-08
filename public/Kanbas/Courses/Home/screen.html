@@ -1,16 +1,72 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css" />
+        
         <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/Kanbas/styles.css" />
         <link rel="stylesheet" href="/Kanbas/Navigation/index.css" />
         <link rel="stylesheet" href="/Kanbas/Courses/Navigation/index.css" />
         <link rel="stylesheet" href="/Kanbas/Courses/Modules/index.css" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css" />
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-1 d-none d-md-block order-2 order-md-1" style="padding: 0px; margin: 0px; border: 0px; height: 100vh;">
+        <div class="d-flex">
+            <div class="col-1 d-none d-md-block" style="height: 100vh;">
+                <ul class="wd-kanbas-navigation">
+                    <li>
+                        <a href="http://northeastern.edu"><img src="https://alumni.northeastern.edu/wp-content/uploads/2020/05/howlin-huskies-trivia-logo.png" class="neu-logo center" /></a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Account/Profile/screen.html"><i class="fa fa-user" style="color: white"></i>Profile</a>
+                    </li>
+                    <li>
+                        <a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a>
+                    </li>
+                    <li class="wd-active">
+                        <a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-inbox"></i>Inbox</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-history" aria-hidden="true"></i>History</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-file-video-o" aria-hidden="true"></i>Studio</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon-on-top"><i class="fa fa-question-circle" aria-hidden="true"></i>Help</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-none d-md-block">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Web Development</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Modules</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="d-block d-md-none">
+                    <nav class="navbar navbar-dark bg-dark" style="height: 70px;">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" href="#KanbasNav" role="button" aria-expanded="false" aria-controls="KanbasNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <!-- Insert your navigation items here -->
+                        </div>
+                        <a class="navbar-brand" data-toggle="collapse" href="#CourseNav" role="button" aria-expanded="false" aria-controls="CourseNav">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </nav>
+                </div>
+                <div class="collapse position-absolute" id="KanbasNav" style="z-index: 1;">
                     <ul class="wd-kanbas-navigation">
                         <li>
                             <a href="http://northeastern.edu"><img src="https://alumni.northeastern.edu/wp-content/uploads/2020/05/howlin-huskies-trivia-logo.png" class="neu-logo center" /></a>
@@ -19,169 +75,197 @@
                             <a href="/Kanbas/Account/Profile/screen.html"><i class="fa fa-user" style="color: white"></i>Profile</a>
                         </li>
                         <li>
-                            <a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer" aria-hidden="true"></i></i>Dashboard</a>
+                            <a href="/Kanbas/Dashboard/screen.html"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a>
                         </li>
-                        <li class="wd-active"><a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a></li>
+                        <li class="wd-active">
+                            <a href="/Kanbas/Courses/Home/screen.html"><i class="fa fa-book"></i>Courses</a>
+                        </li>
                         <li>
                             <a href="#"><i class="fa fa-calendar"></i>Calendar</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-inbox"></i>Inbox</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-history" aria-hidden="true"></i>History</a></li>
-                        <li><a href="#"><i class="fa fa-file-video-o" aria-hidden="true"></i>Studio</a></li>
-                        <li><a href="#" class="icon-on-top"><i class="fa fa-question-circle" aria-hidden="true"></i>Help</a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-history" aria-hidden="true"></i>History</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-file-video-o" aria-hidden="true"></i>Studio</a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-on-top"><i class="fa fa-question-circle" aria-hidden="true"></i>Help</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-1 d-none d-md-block order-3 order-md-2">
+                <div class="collapse position-absolute" id="CourseNav" style="z-index: 1;">
                     <ul class="wd-navigation">
                         <li>
-                        <a href="/Kanbas/Courses/Home/screen.html">Home</a></li>
+                            <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+                        </li>
                         <li class="wd-active">
-                        <a href="/Kanbas/Courses/Modules/screen.html">Modules</a>
+                            <a href="/Kanbas/Courses/Modules/screen.html">Modules</a>
                         </li>
                         <li><a href="http://piazza.com">Piazza</a></li>
                         <li><a href="#">Zoom</a></li>
                         <li>
-                        <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+                            <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
                         </li>
                         <li><a href="#">Quizzes</a></li>
                         <li><a href="/Kanbas/Courses/Grades/screen.html">Grades</a></li>
                         <li><a href="#">People</a></li>
                     </ul>
                 </div>
-                <div class="col col-lg-9 order-1 order-md-3">
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-primary me-2">Collapse All</button>
-                        <button type="button" class="btn btn-primary me-2">View Progress</button>
-                        <select class="form-control me-2 w-25">
-                        <option>Publish All</option>
-                        <option>Publish All Modules and Items</option>
-                        <option>Publish Modules Only</option>
-                        <option>Unpublish All</option>
-                        </select>
-                        <button type="button" class="btn btn-primary">+ Module</button>
+                <div class="row no-gutters">
+                    <div class="col-1 d-none d-md-block">
+                        <ul class="wd-navigation">
+                            <li>
+                                <a href="/Kanbas/Courses/Home/screen.html">Home</a>
+                            </li>
+                            <li class="wd-active">
+                                <a href="/Kanbas/Courses/Modules/screen.html">Modules</a>
+                            </li>
+                            <li><a href="http://piazza.com">Piazza</a></li>
+                            <li><a href="#">Zoom</a></li>
+                            <li>
+                                <a href="/Kanbas/Courses/Assignments/screen.html">Assignments</a>
+                            </li>
+                            <li><a href="#">Quizzes</a></li>
+                            <li><a href="/Kanbas/Courses/Grades/screen.html">Grades</a></li>
+                            <li><a href="#">People</a></li>
+                        </ul>
                     </div>
-            
-                    <ul class="list-group wd-modules">
-                        <li class="list-group-item">
-                            <div>
-                                <i class="fa fa-ellipsis-v"></i> Week 1
-                                <span class="float-end">
-                                    <i class="fa fa-check-circle text-success"></i>
-                                    <i class="fa fa-plus ms-2"></i>
-                                    <i class="fa fa-ellipsis-v ms-2"></i>
-                                </span>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i> Learning Objectives
+                    <div class="col col-lg-9">
+                        <div class="d-flex align-items-center" style="padding-top: 10px; padding-left: 40px">
+                            <button type="button" class="btn btn-primary me-2">Collapse All</button>
+                            <button type="button" class="btn btn-primary me-2">View Progress</button>
+                            <select class="form-control me-2 w-25">
+                                <option>Publish All</option>
+                                <option>Publish All Modules and Items</option>
+                                <option>Publish Modules Only</option>
+                                <option>Unpublish All</option>
+                            </select>
+                            <button type="button" class="btn btn-primary">+ Module</button>
+                        </div>
+    
+                        <ul class="list-group wd-modules" style="padding-left: 40px">
+                            <li class="list-group-item">
+                                <div>
+                                    <i class="fa fa-ellipsis-v"></i> Week 1
                                     <span class="float-end">
                                         <i class="fa fa-check-circle text-success"></i>
+                                        <i class="fa fa-plus ms-2"></i>
                                         <i class="fa fa-ellipsis-v ms-2"></i>
                                     </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Introduction to the course</span>
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i> Learning Objectives
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Introduction to the course</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Learn what is Web Development</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Creating a development environment</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Creating a Web Application</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Getting started with the 1st assignment</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i> Reading
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Full Stack Developer - Chapter 1 - Introduction</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px">Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML</span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i> Slides
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <span style="margin-left: 20px"><a href="https://docs.google.com/presentation/d/1yb_fQd5MhVuFczb5F5II0CoDkVJALFqxUnuwPAXiOAU/edit?usp=sharing">Introduction to Web Development</a></span>
+                                        <span class="float-end">
+                                            <i class="fa fa-check-circle text-success"></i>
+                                            <i class="fa fa-ellipsis-v ms-2"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <div>
+                                    <i class="fa fa-ellipsis-v"></i> Week 2
                                     <span class="float-end">
                                         <i class="fa fa-check-circle text-success"></i>
+                                        <i class="fa fa-plus ms-2"></i>
                                         <i class="fa fa-ellipsis-v ms-2"></i>
                                     </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Learn what is Web Development</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Creating a development environment</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Creating a Web Application</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Getting started with the 1st assignment</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i> Reading
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Full Stack Developer - Chapter 1 - Introduction</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px">Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML</span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i> Slides
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <span style="margin-left: 20px"><a href="https://docs.google.com/presentation/d/1yb_fQd5MhVuFczb5F5II0CoDkVJALFqxUnuwPAXiOAU/edit?usp=sharing">Introduction to Web Development</a></span>
-                                    <span class="float-end">
-                                        <i class="fa fa-check-circle text-success"></i>
-                                        <i class="fa fa-ellipsis-v ms-2"></i>
-                                    </span>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <i class="fa fa-ellipsis-v"></i> Week 2
-                                <span class="float-end">
-                                    <i class="fa fa-check-circle text-success"></i>
-                                    <i class="fa fa-plus ms-2"></i>
-                                    <i class="fa fa-ellipsis-v ms-2"></i>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-1 d-none d-lg-block order-4">
+                    <div class="col-1 d-none d-lg-block">
                         <h3>Course Status</h3>
                         <div class="d-flex align-items-center mb-3">
                             <button class="btn btn-secondary me-2">Unpublish</button>
                             <button class="btn btn-primary">Publish</button>
                         </div>
-                        <button class="btn btn-primary mb-2">Import Existing Content</button><br/>
-                        <button class="btn btn-primary mb-2">Import From Commons</button><br/>
-                        <button class="btn btn-primary mb-2">Choose Home Page</button><br/>
+                        <button class="btn btn-primary mb-2">Import Existing Content</button><br />
+                        <button class="btn btn-primary mb-2">Import From Commons</button><br />
+                        <button class="btn btn-primary mb-2">Choose Home Page</button><br />
                     </div>
                 </div>
             </div>
