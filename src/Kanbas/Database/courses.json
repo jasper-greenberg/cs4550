@@ -2,7 +2,7 @@
     {
         "_id": "CS4550",
         "name": "Web Development",
-        "number": "CS4450",
+        "number": "CS4550",
         "startDate": "2024-01-08",
         "endDate": "2024-04-25",
         "image": "react.png"
