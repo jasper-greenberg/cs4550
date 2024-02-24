@@ -10,7 +10,7 @@ function Assignments() {
 
     return (
         <>
-            <div className="d-flex align-items-center button-grp">
+            <div className="d-flex align-items-center button-grp d-none d-sm-flex">
                 <input className="form-control w-25" placeholder="Search for Assignment" />
                 <button type="button" className="wd-assignments-button">
                     + Group
@@ -23,9 +23,9 @@ function Assignments() {
                 </select>
             </div>
             
-            <hr style={{ borderColor: "gray" }} />
+            <hr className="d-none d-sm-flex" style={{ borderColor: "gray" }} />
 
-            <ul className="list-group wd-assignments wd-modules">
+            <ul className="list-group wd-assignments wd-modules col-12 col-sm-auto">
                 <li className="list-group-item">
                     <div>
                         <FaEllipsisV className="me-2" /> ASSIGNMENTS
