@@ -1,0 +1,71 @@
+.wd-kanbas-navigation {
+    background-color: black;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    width: 80px;
+    height: 100vh;
+}
+
+.wd-kanbas-navigation li {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.wd-kanbas-navigation li.wd-active {
+    background-color: white;
+    color: black;
+}
+
+.icon {
+    color: var(--neu-color);
+}
+
+.label {
+    color: white;
+}
+
+.wd-active .label {
+    color: var(--neu-color);
+}
+
+.account-icon {
+    color: white;
+}
+
+.account-label {
+    color: white;
+}
+
+.wd-active .account-icon {
+    color: black;
+}
+
+.wd-active .account-label {
+    color: black;
+}
+
+.neu-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wd-kanbas-navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}

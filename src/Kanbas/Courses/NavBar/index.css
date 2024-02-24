@@ -1,0 +1,44 @@
+.hamburger a {
+    size: 1000px;
+    padding-left: 20px;
+    vertical-align: center;
+    color: var(--neu-color);
+}
+
+.custom-navbar {
+    position: relative;
+}
+
+.custom-navbar::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.custom-breadcrumb {
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+}
+
+.custom-breadcrumb a {
+    color: var(--neu-color);
+    text-decoration: none;
+}
+
+.custom-breadcrumb a {
+    color: var(--neu-color);
+    text-decoration: none;
+}
+
+.custom-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.chevron {
+    margin: 0 4px;
+}
