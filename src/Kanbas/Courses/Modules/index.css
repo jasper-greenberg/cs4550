@@ -50,3 +50,39 @@
   color: white;
   background-color: var(--neu-color);
 }
+
+.modules {
+  width: 85%;
+}
+
+.horizontal-line {
+  border-color: gray;
+  border-width: 0.5px;
+  border-style: solid;
+  width: 85%;
+}
+
+.modules .accordion-item {
+  margin-bottom: 20px;
+}
+
+.modules .accordion .accordion-button:focus,
+.modules .accordion .accordion-button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.module-update-group {
+  margin-bottom: 25px;
+  width: 30%;
+}
+
+.module-buttons {
+    right: 0;
+    position: absolute;
+    margin-right: 55px;
+}
+
+.module-buttons button {
+  margin-left: 5px;
+}

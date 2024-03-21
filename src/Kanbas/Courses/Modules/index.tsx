@@ -16,11 +16,11 @@ function Modules() {
                     <option>Publish Modules Only</option>
                     <option>Unpublish All</option>
                 </select>
-                <button type="button" className="wd-modules-button add-module">
+                {/* <button type="button" className="wd-modules-button add-module">
                     + Module
-                </button>
+                </button> */}
             </div>
-            <hr style={{ borderColor: "gray" }} />
+            <hr className="horizontal-line" />
             <ModuleList />
         </div>
     );

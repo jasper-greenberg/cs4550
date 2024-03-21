@@ -3,11 +3,9 @@ import { VscChevronRight } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Navbar } from "react-bootstrap";
 
-import { courses } from "../../Database";
-
 import "./index.css";
 
-function NavBar() {
+function NavBar({ courses }: { courses: any[] }) {
     const { courseId } = useParams();
     const course = courses.find((course) => course._id === courseId);
 

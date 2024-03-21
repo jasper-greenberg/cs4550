@@ -16,3 +16,28 @@
 .custom-card {
     min-width: 264px;
 }
+
+.add-course-form input {
+    width: 15%;
+    margin-bottom: 5px;
+}
+
+.course-buttons button {
+    margin-right: 5px;
+}
+
+.course-buttons {
+    margin-top:8px;
+}
+
+.card-buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.card-buttons button {
+    margin-left: 3px;
+}
