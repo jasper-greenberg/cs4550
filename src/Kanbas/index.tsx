@@ -1,15 +1,17 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useState } from "react";
-import store from "./store";
+import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
+import axios from "axios";
 
 import KanbasNavigation from "./Navigation";
+import store from "./store";
 import Dashboard from "./Dashboard";
 import Courses from "./Courses";
-import * as db from "./Database";
+
+const API_BASE = process.env.REACT_APP_API_BASE;
 
 function Kanbas() {
-    const [courses, setCourses] = useState<any[]>(db.courses);
+    const [courses, setCourses] = useState<any[]>([]);
     const [course, setCourse] = useState({
         _id: "0",
         name: "Course Name",
@@ -19,22 +21,38 @@ function Kanbas() {
         image: "/images/react.png",
     });
 
-    const addNewCourse = () => {
-        setCourses([...courses, { ...course, _id: new Date().getTime().toString() }]);
+    const COURSES_API = `${API_BASE}/api/courses`;
+
+    const findAllCourses = async () => {
+        const response = await axios.get(COURSES_API);
+        setCourses(response.data);
     };
 
-    const deleteCourse = (courseId: any) => {
-        setCourses(courses.filter((course) => course._id !== courseId));
+    useEffect(() => {
+        findAllCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const addNewCourse = async () => {
+        const response = await axios.post(COURSES_API, course);
+        setCourses([...courses, response.data]);
     };
 
-    const updateCourse = () => {
+    const deleteCourse = async (courseId: string) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = await axios.delete(`${COURSES_API}/${courseId}`);
+        setCourses(courses.filter((c) => c._id !== courseId));
+    };
+
+    const updateCourse = async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = await axios.put(`${COURSES_API}/${course._id}`, course);
         setCourses(
             courses.map((c) => {
                 if (c._id === course._id) {
                     return course;
-                } else {
-                    return c;
                 }
+                return c;
             })
         );
     };
@@ -47,14 +65,8 @@ function Kanbas() {
                     <Routes>
                         <Route path="/" element={<Navigate to="Dashboard" />} />
                         <Route path="Account" element={<h1>Account</h1>} />
-                        <Route path="Dashboard" element={<Dashboard
-                                                            courses={courses}
-                                                            course={course}
-                                                            setCourse={setCourse}
-                                                            addNewCourse={addNewCourse}
-                                                            deleteCourse={deleteCourse}
-                                                            updateCourse={updateCourse} />} />
-                        <Route path="Courses/:courseId/*" element={<Courses courses={courses} />} />
+                        <Route path="Dashboard" element={<Dashboard courses={courses} course={course} setCourse={setCourse} addNewCourse={addNewCourse} deleteCourse={deleteCourse} updateCourse={updateCourse} />} />
+                        <Route path="Courses/:courseId/*" element={<Courses />} />
                     </Routes>
                 </div>
             </div>

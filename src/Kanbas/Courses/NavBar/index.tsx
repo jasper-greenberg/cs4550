@@ -1,14 +1,11 @@
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { VscChevronRight } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Navbar } from "react-bootstrap";
 
 import "./index.css";
 
-function NavBar({ courses }: { courses: any[] }) {
-    const { courseId } = useParams();
-    const course = courses.find((course) => course._id === courseId);
-
+function NavBar({ course }: { course: any }) {
     return (
         <div>
             <Navbar bg="white" expand="sm" className="align-items-center custom-navbar">

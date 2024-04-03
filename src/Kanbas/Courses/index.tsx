@@ -1,4 +1,6 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import NavBar from "./NavBar";
 import CourseNavigation from "./Navigation";
@@ -6,10 +8,25 @@ import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
 
-function Courses({ courses }: { courses: any[] }) {
+const API_BASE = process.env.REACT_APP_API_BASE;
+
+function Courses() {
+    const { courseId } = useParams();
+    const COURSES_API = `${API_BASE}/api/courses`;
+    const [course, setCourse] = useState<any>({ _id: "" });
+    const findCourseById = async (courseId?: string) => {
+        const response = await axios.get(`${COURSES_API}/${courseId}`);
+        setCourse(response.data);
+    };
+
+    useEffect(() => {
+        findCourseById(courseId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [courseId]);
+
     return (
         <div>
-            <NavBar courses={courses} />
+            <NavBar course={course} />
             <CourseNavigation />
             <div>
                 <div className="overflow-y-scroll position-fixed bottom-0 end-0" style={{ left: "320px", top: "50px" }}>

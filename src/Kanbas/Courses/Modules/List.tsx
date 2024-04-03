@@ -1,12 +1,15 @@
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addModule, deleteModule, updateModule, setModule } from "./reducer";
-import { KanbasState } from "../../store";
 
 import { Accordion, FloatingLabel, Form, Button } from "react-bootstrap";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+
+import { addModule, deleteModule, updateModule, setModule, setModules } from "./reducer";
+import { KanbasState } from "../../store";
+import * as client from "./client";
 
 import "./index.css";
 
@@ -14,9 +17,33 @@ function ModuleList() {
     const location = useLocation();
 
     const { courseId } = useParams();
+
+    useEffect(() => {
+        client.findModulesForCourse(courseId).then((modules) => dispatch(setModules(modules)));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [courseId]);
+
     const moduleList = useSelector((state: KanbasState) => state.modulesReducer.modules);
     const module = useSelector((state: KanbasState) => state.modulesReducer.module);
     const dispatch = useDispatch();
+
+    const handleAddModule = () => {
+        client.createModule(courseId, module).then((module) => {
+            dispatch(addModule(module));
+        });
+    };
+
+    const handleDeleteModule = (moduleId: string) => {
+        client.deleteModule(moduleId).then((status) => {
+            dispatch(deleteModule(moduleId));
+        });
+    };
+
+    const handleUpdateModule = async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const status = await client.updateModule(module);
+        dispatch(updateModule(module));
+    };
 
     return (
         <>
@@ -32,8 +59,9 @@ function ModuleList() {
                     </FloatingLabel>
 
                     <div className="course-buttons">
-                        <Button onClick={() => dispatch(addModule({ ...module, course: courseId }))}>Add</Button>
-                        <Button onClick={() => dispatch(updateModule(module))}>Update</Button>
+                        {/* <Button onClick={() => dispatch(addModule({ ...module, course: courseId }))}>Add</Button> */}
+                        <Button onClick={handleAddModule}>Add</Button>
+                        <Button onClick={handleUpdateModule}>Update</Button>
                     </div>
 
                     <hr className="horizontal-line" />
@@ -61,7 +89,7 @@ function ModuleList() {
                                             <Button variant="primary" size="sm" onClick={() => dispatch(setModule(module))}>
                                                 <MdEdit />
                                             </Button>
-                                            <Button variant="danger" size="sm" onClick={() => dispatch(deleteModule(module._id))}>
+                                            <Button variant="danger" size="sm" onClick={() => handleDeleteModule(module._id)}>
                                                 <MdDelete />
                                             </Button>
                                         </div>

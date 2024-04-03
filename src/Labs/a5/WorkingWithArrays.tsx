@@ -47,11 +47,13 @@ function WorkingWithArrays() {
     };
 
     const deleteTodo = async (todo: { id: any; title?: string; description?: string; due?: string; completed?: boolean }) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const response = await axios.delete(`${API}/${todo.id}`);
         setTodos(todos.filter((t) => t.id !== todo.id));
     };
 
     const updateTodo = async () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const response = await axios.put(`${API}/${todo.id}`, todo);
         setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
     };
