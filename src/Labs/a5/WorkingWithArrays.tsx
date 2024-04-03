@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { API_BASE } from './Constants';
+
 function WorkingWithArrays() {
-    const API = "http://localhost:4000/a5/todos";
+    const API = `${API_BASE}/a5/todos`;
     const [todo, setTodo] = useState({
         id: 1,
         title: "NodeJS Assignment",
@@ -19,6 +21,7 @@ function WorkingWithArrays() {
 
     useEffect(() => {
         fetchTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const removeTodo = async (todo: { id: any }) => {

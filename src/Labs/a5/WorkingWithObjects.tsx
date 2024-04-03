@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import { API_BASE } from './Constants';
+
 function WorkingWithObjects() {
     const [assignment, setAssignment] = useState({
         id: 1,
@@ -10,7 +12,7 @@ function WorkingWithObjects() {
         completed: false,
         score: 0,
     });
-    const ASSIGNMENT_URL = "http://localhost:4000/a5/assignment";
+    const ASSIGNMENT_URL = `${API_BASE}/a5/assignment`;
 
     const [module, setModule] = useState({
         id: 1,
@@ -18,7 +20,7 @@ function WorkingWithObjects() {
         description: "NodeJS is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
         course: "CS4550",
     });
-    const MODULE_URL = "http://localhost:4000/a5/module";
+    const MODULE_URL = `${API_BASE}/a5/module`;
 
     const fetchAssignment = async () => {
         const response = await axios.get(`${ASSIGNMENT_URL}`);
@@ -30,18 +32,19 @@ function WorkingWithObjects() {
     };
     useEffect(() => {
         fetchAssignment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div>
             <h3>Working With Objects</h3>
             <h4>Retrieving Objects</h4>
-            <a className="btn btn-primary" href="http://localhost:4000/a5/assignment">
+            <a className="btn btn-primary" href={`${API_BASE}/a5/assignment`}>
                 Get Assignment
             </a>
 
             <h4>Retrieving Properties</h4>
-            <a className="btn btn-primary" href="http://localhost:4000/a5/assignment/title">
+            <a className="btn btn-primary" href={`${API_BASE}/a5/assignment/title`}>
                 Get Title
             </a>
 
@@ -66,12 +69,12 @@ function WorkingWithObjects() {
             </a>
 
             <h4>On Your Own</h4>
-            <a className="btn btn-primary" href="http://localhost:4000/a5/module">
+            <a className="btn btn-primary" href={`${API_BASE}/a5/module`}>
                 Get Module
             </a>
             <br />
 
-            <a className="btn btn-danger" href="http://localhost:4000/a5/module/name">
+            <a className="btn btn-danger" href={`${API_BASE}/a5/module/name`}>
                 Get Module Name
             </a>
             <br />
