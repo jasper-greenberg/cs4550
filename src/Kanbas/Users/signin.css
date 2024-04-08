@@ -1,0 +1,46 @@
+.signin .form-control {
+    width: 225px;
+    height: 10px !important;
+}
+
+.form-group .form-control {
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.form-group button {
+    margin-bottom: 10px;
+}
+
+.alert {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    animation: flyin 0.5s forwards;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.alert.dismissed {
+    animation: flyout 0.5s forwards;
+}
+
+@keyframes flyin {
+    0% {
+        transform: translateX(-50%) translateY(-100%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes flyout {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-100%);
+    }
+}

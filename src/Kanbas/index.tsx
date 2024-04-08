@@ -7,6 +7,7 @@ import KanbasNavigation from "./Navigation";
 import store from "./store";
 import Dashboard from "./Dashboard";
 import Courses from "./Courses";
+import Account from "./Account";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -64,7 +65,7 @@ function Kanbas() {
                 <div style={{ flexGrow: 1 }}>
                     <Routes>
                         <Route path="/" element={<Navigate to="Dashboard" />} />
-                        <Route path="Account" element={<h1>Account</h1>} />
+                        <Route path="/Account/*" element={<Account />} />
                         <Route path="Dashboard" element={<Dashboard courses={courses} course={course} setCourse={setCourse} addNewCourse={addNewCourse} deleteCourse={deleteCourse} updateCourse={updateCourse} />} />
                         <Route path="Courses/:courseId/*" element={<Courses />} />
                     </Routes>
