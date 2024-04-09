@@ -1,29 +1,29 @@
 [
-    {"_id": "cs4550", "title": "Assignment 1", "course": "CS4550"},
-    {"_id": "cs4550", "title": "Assignment 2", "course": "CS4550"},
-    {"_id": "cs4550", "title": "Assignment 3", "course": "CS4550"},
+    {"_id": "1", "title": "Assignment 1", "course": "CS4550"},
+    {"_id": "2", "title": "Assignment 2", "course": "CS4550"},
+    {"_id": "3", "title": "Assignment 3", "course": "CS4550"},
     
-    {"_id": "coop3945", "title": "Assignment 1", "course": "COOP3945"},
-    {"_id": "coop3945", "title": "Assignment 2", "course": "COOP3945"},
-    {"_id": "coop3945", "title": "Assignment 3", "course": "COOP3945"},
+    {"_id": "4", "title": "Assignment 1", "course": "COOP3945"},
+    {"_id": "5", "title": "Assignment 2", "course": "COOP3945"},
+    {"_id": "6", "title": "Assignment 3", "course": "COOP3945"},
     
-    {"_id": "cs3500", "title": "Assignment 1", "course": "CS3500"},
-    {"_id": "cs3500", "title": "Assignment 2", "course": "CS3500"},
-    {"_id": "cs3500", "title": "Assignment 3", "course": "CS3500"},
+    {"_id": "7", "title": "Assignment 1", "course": "CS3500"},
+    {"_id": "8", "title": "Assignment 2", "course": "CS3500"},
+    {"_id": "9", "title": "Assignment 3", "course": "CS3500"},
     
-    {"_id": "cs3000", "title": "Assignment 1", "course": "CS3000"},
-    {"_id": "cs3000", "title": "Assignment 2", "course": "CS3000"},
-    {"_id": "cs3000", "title": "Assignment 3", "course": "CS3000"},
+    {"_id": "10", "title": "Assignment 1", "course": "CS3000"},
+    {"_id": "11", "title": "Assignment 2", "course": "CS3000"},
+    {"_id": "12", "title": "Assignment 3", "course": "CS3000"},
     
-    {"_id": "eece2322", "title": "Assignment 1", "course": "EECE2322"},
-    {"_id": "eece2322", "title": "Assignment 2", "course": "EECE2322"},
-    {"_id": "eece2322", "title": "Assignment 3", "course": "EECE2322"},
+    {"_id": "13", "title": "Assignment 1", "course": "EECE2322"},
+    {"_id": "14", "title": "Assignment 2", "course": "EECE2322"},
+    {"_id": "15", "title": "Assignment 3", "course": "EECE2322"},
     
-    {"_id": "eece2323", "title": "Assignment 1", "course": "EECE2323"},
-    {"_id": "eece2323", "title": "Assignment 2", "course": "EECE2323"},
-    {"_id": "eece2323", "title": "Assignment 3", "course": "EECE2323"},
+    {"_id": "16", "title": "Assignment 1", "course": "EECE2323"},
+    {"_id": "17", "title": "Assignment 2", "course": "EECE2323"},
+    {"_id": "18", "title": "Assignment 3", "course": "EECE2323"},
     
-    {"_id": "game1110", "title": "Assignment 1", "course": "GAME1110"},
-    {"_id": "game1110", "title": "Assignment 2", "course": "GAME1110"},
-    {"_id": "game1110", "title": "Assignment 3", "course": "GAME1110"}
+    {"_id": "19", "title": "Assignment 1", "course": "GAME1110"},
+    {"_id": "20", "title": "Assignment 2", "course": "GAME1110"},
+    {"_id": "21", "title": "Assignment 3", "course": "GAME1110"}
 ]
