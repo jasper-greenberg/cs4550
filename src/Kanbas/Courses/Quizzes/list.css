@@ -1,0 +1,107 @@
+.quiz-group {
+    margin-top: 40px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.quiz-item {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.quiz-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.quiz-title:hover {
+    text-decoration: underline;
+}
+
+.bolder {
+    font-weight: 600;
+}
+
+.quiz-info {
+    display: flex;
+    align-items: center;
+}
+
+.rocket {
+    font-size: 1.3em;
+    margin-left: -5px;
+    margin-right: 20px;
+}
+
+.quiz-meta {
+    display: flex;
+    font-size: 14px;
+    color: #666;
+}
+
+.quiz-meta div {
+    width: 270px;
+    text-align: left;
+}
+
+.quiz-meta span:not(.bolder) {
+    margin-right: 20px;
+}
+
+.custom-header .accordion-button {
+    background: whitesmoke;
+    color: black;
+    font-weight: bold;
+}
+
+.custom-header .accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-collapse div {
+    color: black;
+}
+
+.custom-body {
+    padding-left: 3%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.icons {
+    margin-left: auto;
+    color: #696969 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-icons {
+    display: flex;
+    align-items: center;
+    font-size: 1.6em;
+    margin-right: 20px;
+}
+
+.cancel path {
+    fill: #696969;
+}
+
+.checkmark {
+    color: green;
+}
+
+.ellipsis {
+    font-size: 1.4em;
+}
+
+.published {
+    color: green;
+}
+
+.published-item {
+    border-left: 4px solid #09874b;
+}

@@ -7,6 +7,7 @@ import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
+import Quizzes from "./Quizzes/list";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -38,6 +39,7 @@ function Courses() {
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
                         <Route path="Grades" element={<h1>Grades</h1>} />
+                        <Route path="Quizzes" element={<Quizzes />} />
                     </Routes>
                 </div>
             </div>
