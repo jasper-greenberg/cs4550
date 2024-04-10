@@ -8,74 +8,38 @@ export const QUIZZES_API = `${BASE_API}/api/quizzes`;
 
 export interface Quiz {
     _id: string;
-    id: number,
-    title: string,
-    description: string,
-    course_id: string,
-    published: {
-        type: Boolean,
-        default: false,
-    },
-    type: {
-        type: string,
-        enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],
-        default: "Graded Quiz",
-    },
-    group: {
-        type: string,
-        enum: ["Quizzes", "Exams", "Assignments", "Project"],
-        default: "Quizzes",
-    },
-    shuffle_answers: {
-        type: Boolean,
-        default: true,
-    },
-    time_limit: {
-        type: number,
-        default: 20,
-    },
-    multiple_attempts: {
-        type: Boolean,
-        default: false,
-    },
-    show_correct_answers: {
-        type: string,
-        enum: ["Never", "After last attempt", "After due date"],
-        default: "After last attempt",
-    },
-    access_code: string,
-    one_question_at_a_time: {
-        type: Boolean,
-        default: true,
-    },
-    webcam_required: {
-        type: Boolean,
-        default: false,
-    },
-    lock_questions_after_answering: {
-        type: Boolean,
-        default: false,
-    },
-    due_date: Date,
-    available_date: Date,
-    available_until_date: Date,
-    questions: [
-        {
-            id: string,
-            type: {
-                type: string,
-                enum: ["MULTIPLE_CHOICE", "TRUE_FALSE", "MULTIPLE_FILL_IN_THE_BLANK"],
-            },
-            title: string,
-            points: number,
-            answers: [
-                {
-                    text: string,
-                    correct: Boolean,
-                }
-            ],
-        },
-    ]
+    id: number;
+    title: string;
+    description: string;
+    course_id: string;
+    published: boolean;
+    type: "Graded Quiz" | "Practice Quiz" | "Graded Survey" | "Ungraded Survey";
+    group: "Quizzes" | "Exams" | "Assignments" | "Project";
+    shuffle_answers: boolean;
+    time_limit: number;
+    multiple_attempts: boolean;
+    show_correct_answers: "Never" | "After last attempt" | "After due date";
+    access_code: string;
+    one_question_at_a_time: boolean;
+    webcam_required: boolean;
+    lock_questions_after_answering: boolean;
+    due_date: Date;
+    available_date: Date;
+    available_until_date: Date;
+    questions: Question[];
+}
+
+interface Question {
+    id: string;
+    type: "MULTIPLE_CHOICE" | "TRUE_FALSE" | "MULTIPLE_FILL_IN_THE_BLANK";
+    title: string;
+    points: number;
+    answers: Answer[];
+}
+
+interface Answer {
+    text: string;
+    correct: boolean;
 }
 
 export const updateQuiz = async (quiz: Quiz) => {
@@ -96,9 +60,9 @@ export const deleteQuiz = async (quiz: Quiz) => {
 export const findAllQuizzes = async () => {
     const response = await axios.get(`${QUIZZES_API}`);
     return response.data;
-}
+};
 
 export const findQuizzesByCourseId = async (courseId: string) => {
     const response = await axios.get(`${QUIZZES_API}/courses/${courseId}`);
     return response.data;
-}
+};

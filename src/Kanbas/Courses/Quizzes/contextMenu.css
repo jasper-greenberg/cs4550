@@ -1,0 +1,16 @@
+.custom-dropdown-menu {
+    min-width: 7em;
+}
+
+.custom-list {
+    margin: 0px;
+}
+
+.custom-dropdown-menu a {
+    padding-right: -10px;
+}
+
+.unstyled-link {
+    color: inherit;
+    text-decoration: none;
+}
