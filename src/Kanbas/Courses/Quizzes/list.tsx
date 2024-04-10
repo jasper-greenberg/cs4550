@@ -151,7 +151,7 @@ export default function Quizzes() {
                                                 <RxRocket className={`rocket ${quiz.published ? "published" : ""}`} />
                                                 <div>
                                                     <Link
-                                                        to={`${location.pathname}/${quiz.title}`}
+                                                        to={`${location.pathname}/${quiz._id}`}
                                                         className="quiz-title"
                                                     >
                                                         {quiz.title}

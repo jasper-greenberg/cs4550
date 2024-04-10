@@ -5,10 +5,6 @@
     color: var(--neu-color);
 }
 
-.custom-navbar {
-    position: relative;
-}
-
 .custom-navbar::after {
     content: "";
     position: absolute;

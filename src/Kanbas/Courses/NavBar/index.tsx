@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { VscChevronRight } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Navbar } from "react-bootstrap";
 
 import "./index.css";
+
+import * as client from "../Quizzes/client";
 
 function NavBar({ course }: { course: any }) {
     const path = useLocation().pathname;
@@ -15,9 +17,30 @@ function NavBar({ course }: { course: any }) {
 
     const basePath = `/Kanbas/Courses/${course?._id}`;
 
+    const findQuizById = async (quizId: string) => {
+        const quiz = await client.findQuizById(quizId);
+        return quiz;
+    };
+
+    const [segments, setSegments] = useState(splitPath);
+
+    useEffect(() => {
+        if (splitPath.length > 1 && splitPath[0] === "Quizzes") {
+            findQuizById(splitPath[1]).then((quiz) => {
+                const newSegments = [splitPath[0], quiz.title];
+                if (JSON.stringify(newSegments) !== JSON.stringify(segments)) {
+                    setSegments(newSegments);
+                }
+            });
+        // if the path doesn't match the segments, update the segments
+        } else if (JSON.stringify(splitPath) !== JSON.stringify(segments)) {
+            setSegments(splitPath);
+        }
+    }, [splitPath, segments]);
+
     return (
         <div>
-            <Navbar bg="white" expand="sm" className="align-items-center custom-navbar">
+            <Navbar bg="white" expand="sm" className="align-items-center">
                 <Navbar.Brand href="#">
                     <div className="hamburger">
                         <Link to="#">
@@ -29,16 +52,15 @@ function NavBar({ course }: { course: any }) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <div className="custom-breadcrumb my-auto d-flex align-items-center">
                         <Link to={`${basePath}/Home`}>{course?.name}</Link>
-                        {splitPath.map((segment, index) => {
-                            const decodedSegment = decodeURIComponent(segment);
+                        {segments.map((segment, index) => {
                             const pathToSegment = `${basePath}/${splitPath.slice(0, index + 1).join("/")}`;
-                            const isLastSegment = index === splitPath.length - 1;
+                            const isLastSegment = index === segments.length - 1;
 
                             return (
                                 <React.Fragment key={index}>
                                     <VscChevronRight size={15} className="chevron mx-2" />
                                     <Link to={pathToSegment} className={isLastSegment ? "last-segment" : ""}>
-                                        {decodedSegment}
+                                        {segment}
                                     </Link>
                                 </React.Fragment>
                             );

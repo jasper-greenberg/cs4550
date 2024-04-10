@@ -8,6 +8,7 @@ import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
 import Quizzes from "./Quizzes/list";
+import QuizDetails from "./Quizzes/details";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -30,7 +31,7 @@ function Courses() {
             <NavBar course={course} />
             <CourseNavigation />
             <div>
-                <div className="overflow-y-scroll position-fixed bottom-0 end-0" style={{ left: "320px", top: "50px" }}>
+                <div className="overflow-y-scroll position-fixed bottom-0 end-0" style={{ left: "280px", top: "70px" }}>
                     <Routes>
                         <Route path="/" element={<Navigate to="Home" />} />
                         <Route path="Home" element={<Home />} />
@@ -40,6 +41,7 @@ function Courses() {
                         <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
                         <Route path="Grades" element={<h1>Grades</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
+                        <Route path="Quizzes/:quizId" element={<QuizDetails />} />
                     </Routes>
                 </div>
             </div>
