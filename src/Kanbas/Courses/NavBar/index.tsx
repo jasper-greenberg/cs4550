@@ -40,7 +40,7 @@ function NavBar({ course }: { course: any }) {
 
     return (
         <div>
-            <Navbar bg="white" expand="sm" className="align-items-center">
+            <Navbar bg="white" expand="sm" className="custom-navbar align-items-center">
                 <Navbar.Brand href="#">
                     <div className="hamburger">
                         <Link to="#">

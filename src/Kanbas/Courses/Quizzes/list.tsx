@@ -13,6 +13,16 @@ import * as client from "./client";
 
 import ContextMenu from "./contextMenu";
 
+export const cleanDate = (date: Date) => {
+    return new Date(date).toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        timeZone: "America/New_York",
+    });
+};
+
 export default function Quizzes() {
     const { courseId } = useParams();
     const location = useLocation();
@@ -42,16 +52,6 @@ export default function Quizzes() {
 
         fetchQuizzes();
     }, [courseId]);
-
-    const cleanDate = (date: Date) => {
-        return new Date(date).toLocaleString("en-US", {
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            timeZone: "America/New_York",
-        });
-    };
 
     const renderQuizStatus = (quiz: Quiz) => {
         const currentDate = new Date();
