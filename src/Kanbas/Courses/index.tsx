@@ -9,6 +9,8 @@ import Home from "./Home";
 import Assignments from "./Assignments";
 import Quizzes from "./Quizzes/list";
 import QuizDetails from "./Quizzes/details";
+import QuizPreview from "./Quizzes/preview";
+import QuizEdit from "./Quizzes/edit";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
 
@@ -42,6 +44,8 @@ function Courses() {
                         <Route path="Grades" element={<h1>Grades</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
                         <Route path="Quizzes/:quizId" element={<QuizDetails />} />
+                        <Route path="Quizzes/:quizId/preview" element={<QuizPreview />} />
+                        <Route path="Quizzes/:quizId/edit" element={<QuizEdit />} />
                     </Routes>
                 </div>
             </div>
