@@ -21,6 +21,10 @@
     margin-bottom: 20px;
 }
 
+.custom-item:first-of-type {
+    border-radius: 0px;
+}
+
 .quiz-item {
     padding: 20px;
     border: 1px solid #ccc;

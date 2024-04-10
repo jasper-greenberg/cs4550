@@ -134,7 +134,7 @@ export default function Quizzes() {
                             alwaysOpen
                             key={groupIndex}
                         >
-                            <Accordion.Item eventKey={groupIndex.toString()} key={groupIndex}>
+                            <Accordion.Item eventKey={groupIndex.toString()} key={groupIndex} bsPrefix="custom-item accordion-item">
                                 <Accordion.Header bsPrefix="custom-header accordion-header" key={groupIndex}>
                                     {translations[group as keyof typeof translations]}
                                 </Accordion.Header>
