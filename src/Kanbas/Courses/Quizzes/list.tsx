@@ -86,17 +86,18 @@ export default function Quizzes() {
      *
      * @param {string} quizId - The ID of the quiz to toggle.
      */
-    const togglePublished = (quizId: string) => {
-        // Update the quizzes state.
-        // The function passed to setQuizzes receives the previous quizzes state and returns the new state.
-        setQuizzes((prevQuizzes) =>
-            // Map over the previous quizzes state to create a new array.
-            prevQuizzes.map((quiz) =>
-                // If the current quiz's ID is the same as quizId, return a new object with all the properties of quiz and an updated published property.
-                // If the current quiz's ID is not the same as quizId, return quiz unchanged.
-                quiz._id === quizId ? { ...quiz, published: !quiz.published } : quiz
-            )
-        );
+    const togglePublished = async (quizId: string) => {
+        // filter the quizzes state to find the quiz with the matching ID
+        const quiz = quizzes.find((quiz) => quiz._id === quizId);
+
+        if (!quiz) {
+            throw new Error(`Quiz with ID ${quizId} not found`);
+        }
+
+        const updatedQuiz = { ...quiz, published: !quiz.published };
+
+        setQuizzes(quizzes.map((q) => (q._id === quizId ? updatedQuiz : q)));
+        await client.updateQuiz(updatedQuiz);
     };
 
     /**
@@ -134,7 +135,11 @@ export default function Quizzes() {
                             alwaysOpen
                             key={groupIndex}
                         >
-                            <Accordion.Item eventKey={groupIndex.toString()} key={groupIndex} bsPrefix="custom-item accordion-item">
+                            <Accordion.Item
+                                eventKey={groupIndex.toString()}
+                                key={groupIndex}
+                                bsPrefix="custom-item accordion-item"
+                            >
                                 <Accordion.Header bsPrefix="custom-header accordion-header" key={groupIndex}>
                                     {translations[group as keyof typeof translations]}
                                 </Accordion.Header>

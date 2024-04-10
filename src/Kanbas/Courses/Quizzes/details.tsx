@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FcCancel } from "react-icons/fc";
@@ -41,8 +41,8 @@ export default function QuizDetails() {
                 ...quiz,
                 published: !quiz.published,
             };
-            await client.updateQuiz(updatedQuiz);
             setQuiz(updatedQuiz);
+            await client.updateQuiz(updatedQuiz);
         }
     };
 
