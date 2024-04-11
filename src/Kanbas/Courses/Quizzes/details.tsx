@@ -67,7 +67,7 @@ export default function QuizDetails() {
                         ) : (
                             <button className="btn unpublished icon-container" onClick={togglePublished}>
                                 <FcCancel className="small-icon" />
-                                Unpublished
+                                Publish
                             </button>
                         )}
                         <button className="btn" onClick={() => navigateTo("preview")}>                                                
