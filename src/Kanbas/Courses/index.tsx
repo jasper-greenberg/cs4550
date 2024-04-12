@@ -44,8 +44,8 @@ function Courses() {
                         <Route path="Grades" element={<h1>Grades</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
                         <Route path="Quizzes/:quizId" element={<QuizDetails />} />
-                        <Route path="Quizzes/:quizId/preview" element={<QuizPreview />} />
-                        <Route path="Quizzes/:quizId/edit" element={<QuizEdit />} />
+                        <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
+                        <Route path="Quizzes/:quizId/Edit" element={<QuizEdit />} />
                     </Routes>
                 </div>
             </div>

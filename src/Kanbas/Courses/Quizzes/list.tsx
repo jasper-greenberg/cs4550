@@ -71,7 +71,7 @@ export default function Quizzes() {
             return (
                 <>
                     <span className="bolder">Available until </span>
-                    <span>{cleanDate(availableDate)}</span>
+                    <span>{cleanDate(availableUntilDate)}</span>
                 </>
             );
         }
