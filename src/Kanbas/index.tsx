@@ -10,6 +10,7 @@ import Courses from "./Courses";
 import Account from "./Account";
 
 const API_BASE = process.env.REACT_APP_API_BASE;
+const COURSES_API = `${API_BASE}/api/courses`;
 
 function Kanbas() {
     const [courses, setCourses] = useState<any[]>([]);
@@ -22,16 +23,13 @@ function Kanbas() {
         image: "/images/react.png",
     });
 
-    const COURSES_API = `${API_BASE}/api/courses`;
-
-    const findAllCourses = async () => {
-        const response = await axios.get(COURSES_API);
-        setCourses(response.data);
-    };
-
     useEffect(() => {
+        const findAllCourses = async () => {
+            const response = await axios.get(COURSES_API);
+            setCourses(response.data);
+        };
+
         findAllCourses();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const addNewCourse = async () => {
@@ -66,7 +64,19 @@ function Kanbas() {
                     <Routes>
                         <Route path="/" element={<Navigate to="Dashboard" />} />
                         <Route path="/Account/*" element={<Account />} />
-                        <Route path="Dashboard" element={<Dashboard courses={courses} course={course} setCourse={setCourse} addNewCourse={addNewCourse} deleteCourse={deleteCourse} updateCourse={updateCourse} />} />
+                        <Route
+                            path="Dashboard"
+                            element={
+                                <Dashboard
+                                    courses={courses}
+                                    course={course}
+                                    setCourse={setCourse}
+                                    addNewCourse={addNewCourse}
+                                    deleteCourse={deleteCourse}
+                                    updateCourse={updateCourse}
+                                />
+                            }
+                        />
                         <Route path="Courses/:courseId/*" element={<Courses />} />
                     </Routes>
                 </div>

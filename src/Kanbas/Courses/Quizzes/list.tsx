@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 import { Accordion } from "react-bootstrap";
@@ -26,6 +26,7 @@ export const cleanDate = (date: Date) => {
 export default function Quizzes() {
     const { courseId } = useParams();
     const location = useLocation();
+    const isFirstRender = useRef(true);
 
     if (!courseId) {
         throw new Error("courseId is required");
@@ -42,6 +43,11 @@ export default function Quizzes() {
     };
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
         const fetchQuizzes = async () => {
             const quizzes = await client.findQuizzesByCourseId(courseId);
             setQuizzes(quizzes);
@@ -156,7 +162,8 @@ export default function Quizzes() {
                                                 <RxRocket className={`rocket ${quiz.published ? "published" : ""}`} />
                                                 <div>
                                                     <Link
-                                                        to={`${location.pathname}/${quiz._id}`}
+                                                        to={{pathname: `${location.pathname}/${quiz._id}`}}
+                                                        state={{quiz: quiz}}
                                                         className="quiz-title"
                                                     >
                                                         {quiz.title}

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import NavBar from "./NavBar";
@@ -18,15 +18,22 @@ function Courses() {
     const { courseId } = useParams();
     const COURSES_API = `${API_BASE}/api/courses`;
     const [course, setCourse] = useState<any>({ _id: "" });
-    const findCourseById = async (courseId?: string) => {
-        const response = await axios.get(`${COURSES_API}/${courseId}`);
-        setCourse(response.data);
-    };
+
+    const isFirstRender = useRef(true);
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+    
+        const findCourseById = async (courseId?: string) => {
+            const response = await axios.get(`${COURSES_API}/${courseId}`);
+            setCourse(response.data);
+        };
+    
         findCourseById(courseId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [courseId]);
+    }, [COURSES_API, courseId]);
 
     return (
         <div>
@@ -45,7 +52,7 @@ function Courses() {
                         <Route path="Quizzes" element={<Quizzes />} />
                         <Route path="Quizzes/:quizId" element={<QuizDetails />} />
                         <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
-                        <Route path="Quizzes/:quizId/Edit" element={<QuizEdit />} />
+                        <Route path="Quizzes/Edit" element={<QuizEdit />} />
                     </Routes>
                 </div>
             </div>

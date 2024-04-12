@@ -12,16 +12,16 @@ import { cleanDate } from "./list";
 import "./details.css";
 
 export default function QuizDetails() {
-    // get the quizId from the path
-    const { quizId } = useParams();
     const location = useLocation();
+    const state = location.state
     const navigate = useNavigate();
+
+    const { quizId } = useParams();
+    const [quiz, setQuiz] = useState<Quiz>(state?.quiz);
 
     if (!quizId) {
         throw new Error("quizId is required");
     }
-
-    const [quiz, setQuiz] = useState<Quiz>();
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -29,12 +29,15 @@ export default function QuizDetails() {
             setQuiz(quiz);
         };
 
-        fetchQuiz();
-    }, [quizId]);
+        // if quiz is not stored in location state, get it from the server
+        if (!quiz) {
+            fetchQuiz();
+        }
+    }, [quiz, quizId]);
 
-    /**
-     * Toggles the published status of a quiz.
-     */
+    // /**
+    //  * Toggles the published status of a quiz.
+    //  */
     const togglePublished = async () => {
         if (quiz) {
             const updatedQuiz = {
@@ -100,7 +103,7 @@ export default function QuizDetails() {
                             <div className="value-container">
                                 <div className="value">{quiz.type}</div>
                                 <div className="value">
-                                    {quiz.questions.reduce((acc, question) => acc + question.points, 0)}
+                                    {quiz.questions.reduce((acc: any, question: { points: any; }) => acc + question.points, 0)}
                                 </div>
                                 <div className="value">{quiz.group}</div>
                                 <div className="value">{quiz.shuffle_answers ? "Yes" : "No"}</div>

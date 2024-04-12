@@ -10,12 +10,11 @@ import * as client from "../Quizzes/client";
 
 function NavBar({ course }: { course: any }) {
     const path = useLocation().pathname;
+    const basePath = `/Kanbas/Courses/${course?._id}`;
 
     // strip off everything before and including the course id
     // then split the remaining path into segments
     const splitPath = path.split("/").slice(4);
-
-    const basePath = `/Kanbas/Courses/${course?._id}`;
 
     const findQuizById = async (quizId: string) => {
         const quiz = await client.findQuizById(quizId);
