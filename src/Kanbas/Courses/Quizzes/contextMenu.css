@@ -14,3 +14,8 @@
     color: inherit;
     text-decoration: none;
 }
+
+.custom-dropdown-menu a:focus,
+.custom-dropdown-menu a:active {
+    background-color: #d41b2c;
+}

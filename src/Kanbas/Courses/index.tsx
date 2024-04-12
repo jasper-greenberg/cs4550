@@ -26,12 +26,12 @@ function Courses() {
             isFirstRender.current = false;
             return;
         }
-    
+
         const findCourseById = async (courseId?: string) => {
             const response = await axios.get(`${COURSES_API}/${courseId}`);
             setCourse(response.data);
         };
-    
+
         findCourseById(courseId);
     }, [COURSES_API, courseId]);
 
@@ -50,9 +50,10 @@ function Courses() {
                         <Route path="Assignments/:assignmentId" element={<h1>Assignment Editor</h1>} />
                         <Route path="Grades" element={<h1>Grades</h1>} />
                         <Route path="Quizzes" element={<Quizzes />} />
+                        <Route path="Quizzes/New" element={<QuizEdit />} />
                         <Route path="Quizzes/:quizId" element={<QuizDetails />} />
+                        <Route path="Quizzes/:quizId/Edit" element={<QuizEdit />} />
                         <Route path="Quizzes/:quizId/Preview" element={<QuizPreview />} />
-                        <Route path="Quizzes/Edit" element={<QuizEdit />} />
                     </Routes>
                 </div>
             </div>

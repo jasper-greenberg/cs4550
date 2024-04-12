@@ -127,7 +127,7 @@ export default function Quizzes() {
         <div className="container custom-container">
             <div className="row mb-3">
                 <div className="col-12 text-end">
-                    <Link to={`${location.pathname}/New Quiz`} className="quiz-title">
+                    <Link to={`${location.pathname}/New`} className="quiz-title">
                         <button className="btn btn-primary add-quiz-button">+ Quiz</button>
                     </Link>
                 </div>

@@ -47,7 +47,7 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ quiz, togglePublished, delete
 
             <Dropdown.Menu as={CustomMenu} bsPrefix="custom-dropdown-menu dropdown-menu">
                 <Dropdown.Item eventKey="1">
-                    <Link to={`${location.pathname}/${quiz.title}`} className="unstyled-link">Edit</Link>
+                    <Link to={`${location.pathname}/${quiz._id}/Edit`} state={{quiz: quiz}} className="unstyled-link">Edit</Link>
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="2" onClick={() => deleteQuiz(quiz)}>
                     Delete

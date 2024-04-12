@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { VscChevronRight } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Navbar } from "react-bootstrap";
@@ -10,6 +10,8 @@ import * as client from "../Quizzes/client";
 
 function NavBar({ course }: { course: any }) {
     const path = useLocation().pathname;
+    const [searchParams] = useSearchParams();
+    const quizId = searchParams.get("id");
     const basePath = `/Kanbas/Courses/${course?._id}`;
 
     // strip off everything before and including the course id
@@ -25,8 +27,8 @@ function NavBar({ course }: { course: any }) {
 
     useEffect(() => {
         if (splitPath.length > 1 && splitPath[0] === "Quizzes") {
-            findQuizById(splitPath[1]).then((quiz) => {
-                const newSegments = [splitPath[0], quiz.title];
+            findQuizById(quizId || splitPath[1]).then((quiz) => {
+                const newSegments = [splitPath[0], quiz?.title || "New Quiz"];
                 if (JSON.stringify(newSegments) !== JSON.stringify(segments)) {
                     setSegments(newSegments);
                 }
@@ -35,7 +37,7 @@ function NavBar({ course }: { course: any }) {
         } else if (JSON.stringify(splitPath) !== JSON.stringify(segments)) {
             setSegments(splitPath);
         }
-    }, [splitPath, segments]);
+    }, [splitPath, segments, quizId]);
 
     return (
         <div>

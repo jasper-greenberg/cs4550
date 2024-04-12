@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FcCancel } from "react-icons/fc";
@@ -13,8 +13,8 @@ import "./details.css";
 
 export default function QuizDetails() {
     const location = useLocation();
-    const state = location.state
-    const navigate = useNavigate();
+    const path = location.pathname;
+    const state = location.state;
 
     const { quizId } = useParams();
     const [quiz, setQuiz] = useState<Quiz>(state?.quiz);
@@ -49,14 +49,6 @@ export default function QuizDetails() {
         }
     };
 
-
-    /**
-     * Navigates to the given page.
-     */
-    const navigateTo = (page: string) => {
-        navigate(`${location.pathname}/${page}`);
-    }
-
     return (
         <div className="container custom-container">
             {quiz && (
@@ -73,12 +65,14 @@ export default function QuizDetails() {
                                 Publish
                             </button>
                         )}
-                        <button className="btn" onClick={() => navigateTo("preview")}>                                                
-                                Preview</button>
-                        <button className="btn icon-container" onClick={() => navigateTo("edit")}>
+
+                        <Link to={`${path}/Preview`} state={{quiz: quiz}} className="btn">                                            
+                            Preview
+                        </Link>
+                        <Link to={`${path}/Edit`} state={{quiz: quiz}} className="btn">
                             <GrEdit className="small-icon edit" />
                             Edit
-                        </button>
+                        </Link>
                     </div>
 
                     <hr className="separator" />
@@ -103,7 +97,10 @@ export default function QuizDetails() {
                             <div className="value-container">
                                 <div className="value">{quiz.type}</div>
                                 <div className="value">
-                                    {quiz.questions.reduce((acc: any, question: { points: any; }) => acc + question.points, 0)}
+                                    {quiz.questions.reduce(
+                                        (acc: any, question: { points: any }) => acc + question.points,
+                                        0
+                                    )}
                                 </div>
                                 <div className="value">{quiz.group}</div>
                                 <div className="value">{quiz.shuffle_answers ? "Yes" : "No"}</div>

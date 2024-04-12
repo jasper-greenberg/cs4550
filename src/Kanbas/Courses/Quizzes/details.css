@@ -43,15 +43,16 @@ h3 {
     padding-top: 10px;
 }
 
-.quiz-button-group button {
+.quiz-button-group button, .quiz-button-group a {
     margin-left: 5px;
     color: black;
     background-color: whitesmoke;
     border-color: #aaa;
     border-radius: 3px;
+    text-decoration: none; /* Removes the underline from links */
 }
 
-.quiz-button-group button:hover {
+.quiz-button-group button:hover, .quiz-button-group a:hover {
     color: #2d3b45;
     background-color: #e8e8e8;
     border-color: #aaa;

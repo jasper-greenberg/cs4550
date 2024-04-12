@@ -8,7 +8,6 @@ export const QUIZZES_API = `${BASE_API}/api/quizzes`;
 
 export interface Quiz {
     _id: string;
-    id: number;
     title: string;
     description: string;
     course_id: string;
