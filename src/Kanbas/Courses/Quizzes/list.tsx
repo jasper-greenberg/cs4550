@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 
 import { Accordion } from "react-bootstrap";
 import { RxRocket } from "react-icons/rx";
@@ -8,7 +8,7 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 
 import "./list.css";
 
-import { Quiz } from "./client";
+import { Quiz, Type, Group, ShowCorrectAnswers } from "./client";
 import * as client from "./client";
 
 import ContextMenu from "./contextMenu";
@@ -26,6 +26,7 @@ export const cleanDate = (date: Date) => {
 export default function Quizzes() {
     const { courseId } = useParams();
     const location = useLocation();
+    const navigate = useNavigate();
     const isFirstRender = useRef(true);
 
     if (!courseId) {
@@ -123,13 +124,37 @@ export default function Quizzes() {
         );
     };
 
+    const createQuizAndRedirect = async () => {
+        const newQuiz = {
+            _id: "",
+            title: "Unnamed Quiz",
+            description: "",
+            course_id: courseId,
+            published: false,
+            type: "Graded Quiz" as Type,
+            group: "Quizzes" as Group,
+            shuffle_answers: true,
+            time_limit: 20,
+            multiple_attempts: false,
+            show_correct_answers: "After last attempt" as ShowCorrectAnswers,
+            access_code: "",
+            one_question_at_a_time: true,
+            webcam_required: false,
+            lock_questions_after_answering: false,
+            due_date: new Date(),
+            available_date: new Date(),
+            available_until_date: new Date(),
+            questions: [],
+        };
+        const createdQuiz = await client.createQuiz(newQuiz);
+        navigate(`${location.pathname}/${createdQuiz._id}/Edit`);
+    };
+
     return (
         <div className="container custom-container">
             <div className="row mb-3">
                 <div className="col-12 text-end">
-                    <Link to={`${location.pathname}/New`} className="quiz-title">
-                        <button className="btn btn-primary add-quiz-button">+ Quiz</button>
-                    </Link>
+                    <button className="btn btn-primary add-quiz-button" onClick={createQuizAndRedirect}>+ Quiz</button>
                 </div>
             </div>
             <div className="row">
@@ -162,8 +187,8 @@ export default function Quizzes() {
                                                 <RxRocket className={`rocket ${quiz.published ? "published" : ""}`} />
                                                 <div>
                                                     <Link
-                                                        to={{pathname: `${location.pathname}/${quiz._id}`}}
-                                                        state={{quiz: quiz}}
+                                                        to={{ pathname: `${location.pathname}/${quiz._id}` }}
+                                                        state={{ quiz: quiz }}
                                                         className="quiz-title"
                                                     >
                                                         {quiz.title}
@@ -174,8 +199,12 @@ export default function Quizzes() {
                                                             <span className="bolder">Due</span>{" "}
                                                             {cleanDate(quiz.due_date)}
                                                         </span>
-                                                        <span>{calculateTotalPoints(quiz)} pts</span>
-                                                        <span>{quiz.questions.length} Questions</span>
+                                                        {quiz.published && (
+                                                            <>
+                                                                <span>{calculateTotalPoints(quiz)} pts</span>
+                                                                <span>{quiz.questions.length} Questions</span>
+                                                            </>
+                                                        )}
                                                     </div>
                                                 </div>
                                                 <div className="icons">

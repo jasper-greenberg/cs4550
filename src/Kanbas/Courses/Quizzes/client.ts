@@ -28,6 +28,10 @@ export interface Quiz {
     questions: Question[];
 }
 
+export type Type = Quiz["type"];
+export type Group = Quiz["group"];
+export type ShowCorrectAnswers = Quiz["show_correct_answers"];
+
 interface Question {
     id: string;
     type: "MULTIPLE_CHOICE" | "TRUE_FALSE" | "MULTIPLE_FILL_IN_THE_BLANK";
