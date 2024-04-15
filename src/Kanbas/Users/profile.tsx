@@ -35,7 +35,7 @@ export default function Profile() {
     const signout = async () => {
         await client.signout();
         navigate("/Kanbas/Account/Signin");
-      };
+    };
 
     return (
         <div>
@@ -49,12 +49,12 @@ export default function Profile() {
             {profile && (
                 <div>
                     <div className="form-group">
-                        <input className="form-control" value={profile.username} onChange={(e) => setProfile({ ...profile, username: e.target.value })} />
-                        <input className="form-control" value={profile.password} onChange={(e) => setProfile({ ...profile, password: e.target.value })} />
-                        <input className="form-control" value={profile.firstName} onChange={(e) => setProfile({ ...profile, firstName: e.target.value })} />
-                        <input className="form-control" value={profile.lastName} onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} />
-                        <input className="form-control" value={profile.dob ? new Date(profile.dob).toISOString().split("T")[0] : ""} type="date" onChange={(e) => setProfile({ ...profile, dob: e.target.value })} />
-                        <input className="form-control" value={profile.email} onChange={(e) => setProfile({ ...profile, email: e.target.value })} />
+                        <input className="form-control" value={profile.username} onChange={(e) => setProfile({ ...profile, username: e.target.value })} placeholder="Username" />
+                        <input className="form-control" value={profile.password} onChange={(e) => setProfile({ ...profile, password: e.target.value })} placeholder="Password" />
+                        <input className="form-control" value={profile.firstName} onChange={(e) => setProfile({ ...profile, firstName: e.target.value })} placeholder="First Name" />
+                        <input className="form-control" value={profile.lastName} onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} placeholder="Last Name" />
+                        <input className="form-control" value={profile.dob ? new Date(profile.dob).toISOString().split("T")[0] : ""} type="date" onChange={(e) => setProfile({ ...profile, dob: e.target.value })} placeholder="Date of Birth" />
+                        <input className="form-control" value={profile.email} onChange={(e) => setProfile({ ...profile, email: e.target.value })} placeholder="Email" />
                         <select className="form-control" value={profile.role} onChange={(e) => setProfile({ ...profile, role: e.target.value })}>
                             <option value="USER">User</option>
                             <option value="ADMIN">Admin</option>
