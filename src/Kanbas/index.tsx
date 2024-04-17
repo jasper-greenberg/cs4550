@@ -8,7 +8,7 @@ import store from "./store";
 import Dashboard from "./Dashboard";
 import Courses from "./Courses";
 
-const API_BASE = process.env.REACT_APP_API_BASE;
+const API_BASE = process.env.REACT_APP_API_BASE_AFIVE;
 
 function Kanbas() {
     const [courses, setCourses] = useState<any[]>([]);
