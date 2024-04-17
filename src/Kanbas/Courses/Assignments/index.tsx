@@ -1,12 +1,30 @@
+import { useEffect, useState } from 'react';
 import { FaCheckCircle, FaEllipsisV, FaPlusCircle } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { assignments } from "../../Database";
+
+import * as client from "../../client";
 
 import "./index.css";
 
 function Assignments() {
     const { courseId } = useParams();
-    const assignmentList = assignments.filter((assignment) => assignment.course === courseId);
+
+    const [assignmentList, setAssignmentList] = useState<{ id: string; title: string; course: string; }[]>([]);
+
+    useEffect(() => {
+        const fetchAssignments = async () => {
+            if (!courseId) {
+                return;
+            }
+            const course = await client.findCourseById(courseId);
+
+            const assignmentList = assignments.filter((assignment) => assignment.course === course.id);
+            setAssignmentList(assignmentList);
+        };
+
+        fetchAssignments();
+    }, [courseId]);
 
     return (
         <>
@@ -37,9 +55,9 @@ function Assignments() {
                     </div>
                     <ul className="list-group">
                         {assignmentList.map((assignment) => (
-                            <li className="list-group-item">
+                            <li className="list-group-item" key={assignment.id}>
                                 <FaEllipsisV className="me-2" />
-                                <Link to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}>{assignment.title}</Link>
+                                <Link to={`/Kanbas/Courses/${courseId}/Assignments/${assignment.id}`}>{assignment.title}</Link>
                                 <span className="float-end">
                                     <FaCheckCircle className="text-success" />
                                     <FaEllipsisV className="ms-2" />
