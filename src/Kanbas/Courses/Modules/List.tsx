@@ -10,6 +10,7 @@ import { MdEdit } from "react-icons/md";
 import { addModule, deleteModule, updateModule, setModule, setModules } from "./reducer";
 import { KanbasState } from "../../store";
 import * as client from "./client";
+import * as outerClient from "../../client";
 
 import "./index.css";
 
@@ -17,9 +18,10 @@ function ModuleList() {
     const location = useLocation();
 
     const { courseId } = useParams();
-
     useEffect(() => {
-        client.findModulesForCourse(courseId).then((modules) => dispatch(setModules(modules)));
+        if (courseId) {
+            client.findModulesForCourse(courseId).then((modules) => dispatch(setModules(modules)));
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [courseId]);
 
@@ -27,13 +29,20 @@ function ModuleList() {
     const module = useSelector((state: KanbasState) => state.modulesReducer.module);
     const dispatch = useDispatch();
 
-    const handleAddModule = () => {
-        client.createModule(courseId, module).then((module) => {
+    const handleAddModule = async () => {
+        // get course information
+        if (!courseId) {
+            return;
+        }
+        const course = await outerClient.findCourseById(courseId);
+
+        client.createModule(course.id, module).then((module) => {
             dispatch(addModule(module));
         });
     };
 
     const handleDeleteModule = (moduleId: string) => {
+        console.log(moduleId);
         client.deleteModule(moduleId).then((status) => {
             dispatch(deleteModule(moduleId));
         });
@@ -78,7 +87,6 @@ function ModuleList() {
 
             <div className="modules">
                 {moduleList
-                    .filter((module) => module.course === courseId)
                     .map((module, module_idx) => (
                         <Accordion defaultActiveKey="0" key={module_idx}>
                             <Accordion.Item eventKey={module_idx.toString()} key={module_idx}>

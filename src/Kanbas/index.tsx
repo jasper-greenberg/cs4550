@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
-import axios from "axios";
 
 import KanbasNavigation from "./Navigation";
 import store from "./store";
@@ -9,43 +8,41 @@ import Dashboard from "./Dashboard";
 import Courses from "./Courses";
 import Account from "./Account";
 
-const API_BASE = process.env.REACT_APP_API_BASE;
-const COURSES_API = `${API_BASE}/api/courses`;
+import { Course } from "./client";
+import * as client from "./client";
 
 function Kanbas() {
-    const [courses, setCourses] = useState<any[]>([]);
-    const [course, setCourse] = useState({
-        _id: "0",
+    const [courses, setCourses] = useState<Course[]>([]);
+    const [course, setCourse] = useState<Course>({
+        _id: "",
         name: "Course Name",
         number: "Course Number",
-        startDate: "2024-01-08",
-        endDate: "2024-04-23",
+        startDate: new Date("2024-01-08"),
+        endDate: new Date("2024-04-23"),
         image: "/images/react.png",
     });
 
-    useEffect(() => {
-        const findAllCourses = async () => {
-            const response = await axios.get(COURSES_API);
-            setCourses(response.data);
-        };
+    const findAllCourses = async () => {
+        const response = await client.findAllCourses();
+        setCourses(response);
+    };
 
+    useEffect(() => {
         findAllCourses();
     }, []);
 
     const addNewCourse = async () => {
-        const response = await axios.post(COURSES_API, course);
-        setCourses([...courses, response.data]);
+        const response = await client.createCourse(course);
+        setCourses([...courses, response]);
     };
 
     const deleteCourse = async (courseId: string) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios.delete(`${COURSES_API}/${courseId}`);
+        await client.deleteCourse(courseId);
         setCourses(courses.filter((c) => c._id !== courseId));
     };
 
     const updateCourse = async () => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios.put(`${COURSES_API}/${course._id}`, course);
+        await client.updateCourse(course);
         setCourses(
             courses.map((c) => {
                 if (c._id === course._id) {
@@ -55,7 +52,6 @@ function Kanbas() {
             })
         );
     };
-
     return (
         <Provider store={store}>
             <div className="d-flex">
