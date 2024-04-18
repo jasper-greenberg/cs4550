@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import KanbasNavigation from "./Navigation";
-import store from "./store";
+import { persistor, store } from "./store";
 import Dashboard from "./Dashboard";
 import Courses from "./Courses";
 import Account from "./Account";
@@ -54,29 +55,31 @@ function Kanbas() {
     };
     return (
         <Provider store={store}>
-            <div className="d-flex">
-                <KanbasNavigation />
-                <div style={{ flexGrow: 1 }}>
-                    <Routes>
-                        <Route path="/" element={<Navigate to="Dashboard" />} />
-                        <Route path="/Account/*" element={<Account />} />
-                        <Route
-                            path="Dashboard"
-                            element={
-                                <Dashboard
-                                    courses={courses}
-                                    course={course}
-                                    setCourse={setCourse}
-                                    addNewCourse={addNewCourse}
-                                    deleteCourse={deleteCourse}
-                                    updateCourse={updateCourse}
-                                />
-                            }
-                        />
-                        <Route path="Courses/:courseId/*" element={<Courses />} />
-                    </Routes>
+            <PersistGate loading={null} persistor={persistor}>
+                <div className="d-flex">
+                    <KanbasNavigation />
+                    <div style={{ flexGrow: 1 }}>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="Dashboard" />} />
+                            <Route path="/Account/*" element={<Account />} />
+                            <Route
+                                path="Dashboard"
+                                element={
+                                    <Dashboard
+                                        courses={courses}
+                                        course={course}
+                                        setCourse={setCourse}
+                                        addNewCourse={addNewCourse}
+                                        deleteCourse={deleteCourse}
+                                        updateCourse={updateCourse}
+                                    />
+                                }
+                            />
+                            <Route path="Courses/:courseId/*" element={<Courses />} />
+                        </Routes>
+                    </div>
                 </div>
-            </div>
+            </PersistGate>
         </Provider>
     );
 }

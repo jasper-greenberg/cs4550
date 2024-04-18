@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
@@ -21,6 +22,10 @@ function Dashboard({
     deleteCourse: (course: any) => void;
     updateCourse: () => void;
 }) {
+    const currentUser = useSelector((state: any) => state.userReducer.currentUser);
+
+    console.log(currentUser);
+
     return (
         <div className="p-4">
             <h1>Dashboard</h1>

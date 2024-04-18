@@ -1,40 +1,33 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, FloatingLabel } from "react-bootstrap";
 
 import "./signin.css";
 
 import { User } from "./client";
 import * as client from "./client";
+import { setUser } from './reducer';
 
 export default function SignIn() {
+    const dispatch = useDispatch();
+    const currentUser = useSelector((state: any) => state.userReducer.currentUser);
+
     const [credentials, setCredentials] = useState<User>({ _id: "", username: "", password: "", firstName: "", lastName: "", role: "USER" });
-    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const navigate = useNavigate();
+
     const signIn = async () => {
-        await client.signin(credentials);
+        const user = await client.signin(credentials);
+        dispatch(setUser(user));
         navigate("/Kanbas/Account/Profile");
     };
 
     useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const user = await client.profile();
-                if (user) {
-                    navigate("/Kanbas/Account/Profile");
-                }
-            } catch (error) {
-                console.error("Error checking authentication status:", error);
-            } finally {
-                setIsCheckingAuth(false);
-            }
-        };
-        checkAuth();
-    }, [navigate]);
+        if (currentUser) {
+            navigate("/Kanbas/Account/Profile");
+        }
 
-    if (isCheckingAuth) {
-        return null; // or a loading spinner
-    }
+    }, [currentUser, navigate]);
 
     return (
         <div>
