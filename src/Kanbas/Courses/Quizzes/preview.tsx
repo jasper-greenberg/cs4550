@@ -72,7 +72,13 @@ export default function QuizPreview() {
         setCurrentQuestion((prevIndex) => (prevIndex - 1) % quiz?.questions.length);
     };
 
-    const shuffledAnswers = shuffleAnswers(quiz?.questions[currentQuestion].answers);
+    let answers = quiz?.questions[currentQuestion].answers;
+
+    if (quiz.shuffle_answers) {
+        answers = shuffleAnswers(quiz?.questions[currentQuestion].answers);
+    }
+
+    
 
     return (
         <div className="container custom-container">
@@ -107,7 +113,7 @@ export default function QuizPreview() {
                 <div className="question-body">
                     {quiz?.questions[currentQuestion].title}
                     {quiz?.questions[currentQuestion].type !== "MULTIPLE_FILL_IN_THE_BLANK" ? <form className="answer-choices">
-                        {shuffledAnswers.map((answer: any, index: number) => (
+                        {answers.map((answer: any, index: number) => (
                             <div>
                                 <hr className="q-separator"/>
                                 <input type="radio" id={`answer${index}`} name="answer" value={answer.text} checked={false} />
@@ -115,7 +121,7 @@ export default function QuizPreview() {
                             </div>
                         ))}
                     </form> : <form className="answer-choices">
-                        {shuffledAnswers.map((answer: any, index: number) => (
+                        {answers.map((answer: any, index: number) => (
                             <div>
                                 <hr className="q-separator"/>
                                 <input type="text" id={`answer${index}`} name="answer" defaultValue="" />
