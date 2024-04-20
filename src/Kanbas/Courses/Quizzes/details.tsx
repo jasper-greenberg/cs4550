@@ -66,10 +66,10 @@ export default function QuizDetails() {
                             </button>
                         )}
 
-                        <Link to={`${path}/Preview`} state={{quiz: quiz}} className="btn">                                            
+                        <Link to={`${path}/Preview`} state={{quiz: quiz, startDate: new Date()}} className="btn">                                            
                             Preview
                         </Link>
-                        <Link to={`${path}/Edit`} state={{quiz: quiz}} className="btn">
+                        <Link to={`${path}/Edit`} state={{quiz: quiz}} className="btn icon-container">
                             <GrEdit className="small-icon edit" />
                             Edit
                         </Link>

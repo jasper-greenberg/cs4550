@@ -23,8 +23,12 @@ function Dashboard({
     updateCourse: () => void;
 }) {
     const currentUser = useSelector((state: any) => state.userReducer.currentUser);
-
-    courses = courses.filter((course) => currentUser.courses.includes(course._id));
+ 
+    if (currentUser != null){
+        courses = courses.filter((course) => currentUser.courses.includes(course._id));
+    } else {
+        courses = [];
+    }
 
     return (
         <div className="p-4">

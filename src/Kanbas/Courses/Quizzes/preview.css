@@ -1,0 +1,164 @@
+h3 {
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+
+.custom-container {
+    width: 90%;
+    margin-left: 0;
+}
+
+.value {
+    text-align: left;
+}
+
+.details-table th {
+    font-weight: 600;
+}
+
+.separator {
+    background-color: lightgray;
+}
+
+.q-separator {
+    background-color: lightgray;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.quiz-button-group {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+}
+
+.quiz-button-group button, .quiz-button-group a {
+    margin-left: 5px;
+    color: black;
+    background-color: whitesmoke;
+    border-color: #aaa;
+    border-radius: 3px;
+    text-decoration: none; /* Removes the underline from links */
+}
+
+.quiz-button-group button:hover, .quiz-button-group a:hover {
+    color: #2d3b45;
+    background-color: #e8e8e8;
+    border-color: #aaa;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    padding-left: 7px;
+    padding-right: 7px; 
+}
+
+.small-icon {
+    font-size: 1.3em;
+    margin-right: 5px;
+}
+
+.preview-notif {
+    background-color: #f9ece8;
+    color: #c23b0b;
+    border-radius: 5px;
+    padding: 10px;
+    
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.question-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #aaa;
+    background-color: whitesmoke;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 13px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+.question {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.next-back {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.next { 
+    justify-content: flex-end;
+}
+
+.next .icon-container {
+    padding-right: 1px;
+}
+
+.back { 
+    justify-content: flex-start;
+}
+
+.back .icon-container {
+    padding-left: 1px;
+    margin-left: 0px;
+}
+
+.back .small-icon, .next .small-icon {
+    margin-right: 0px;
+}
+
+.save-submit {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: solid 1px #aaa;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+a.btn.red {
+    background-color: var(--neu-color);
+    border-color: #b51726;
+    border-radius: 3px;
+    font-size: 1rem;
+    color: white;
+}
+
+a.btn.red:hover {
+    background-color: #ca1a2a;
+    border-color: #ca1a2a;
+}
+
+.question-body {
+    justify-content: flex-start;
+    align-items: center;
+    border: solid 1px #aaa;
+    border-top: 0px;
+    padding: 20px
+}
+
+.answer-choices li{
+    list-style-type: none;
+}
+
+.answer-choices {
+    margin-top: 20px;
+}
+
+.answer-choices label {
+    margin-left: 5px;
+}
+
+.answer-choices input[type="radio"]:checked + label::before {
+    background-color: #b51726; /* Change to your desired color */
+}
