@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { FcCancel } from "react-icons/fc";
@@ -49,10 +50,15 @@ export default function QuizDetails() {
         }
     };
 
+    const currentUserType = useSelector((state: any) => state.userReducer.currentUser.role);
+
+
     return (
         <div className="container custom-container">
             {quiz && (
                 <div>
+                    {currentUserType !== "STUDENT" &&
+                    <div>
                     <div className="quiz-button-group">
                         {quiz.published ? (
                             <button className="btn published icon-container" onClick={togglePublished}>
@@ -75,7 +81,7 @@ export default function QuizDetails() {
                         </Link>
                     </div>
 
-                    <hr className="separator" />
+                    <hr className="separator" /></div>}
 
                     <h3>{quiz.title}</h3>
 

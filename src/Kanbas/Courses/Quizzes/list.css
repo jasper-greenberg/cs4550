@@ -43,6 +43,10 @@
     text-decoration: underline;
 }
 
+.quiz-title.unpublished:hover {
+    text-decoration: none;
+}
+
 .bolder {
     font-weight: 600;
 }

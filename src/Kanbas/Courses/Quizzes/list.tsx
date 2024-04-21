@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { Accordion } from "react-bootstrap";
 import { RxRocket } from "react-icons/rx";
@@ -150,13 +151,17 @@ export default function Quizzes() {
         navigate(`${location.pathname}/${createdQuiz._id}/Edit`);
     };
 
+    const currentUserType = useSelector((state: any) => state.userReducer.currentUser.role);
+
     return (
         <div className="container custom-container">
+           
+            {currentUserType !== "STUDENT" &&
             <div className="row mb-3">
                 <div className="col-12 text-end">
                     <button className="btn btn-primary add-quiz-button" onClick={createQuizAndRedirect}>+ Quiz</button>
                 </div>
-            </div>
+            </div>}
             <div className="row">
                 <div className="col-12">
                     {[...groups].map((group, groupIndex) => (
@@ -186,13 +191,14 @@ export default function Quizzes() {
                                                 <div className={`quiz-info ${quiz.published ? "published" : ""}`}></div>
                                                 <RxRocket className={`rocket ${quiz.published ? "published" : ""}`} />
                                                 <div>
+                                                    {quiz.published || currentUserType !== "STUDENT" ? 
                                                     <Link
                                                         to={{ pathname: `${location.pathname}/${quiz._id}` }}
                                                         state={{ quiz: quiz }}
                                                         className="quiz-title"
                                                     >
                                                         {quiz.title}
-                                                    </Link>
+                                                    </Link> : <div className="quiz-title unpublished">{quiz.title}</div>}
                                                     <div className="quiz-meta">
                                                         <div>{renderQuizStatus(quiz)}</div>
                                                         <span>
@@ -210,20 +216,21 @@ export default function Quizzes() {
                                                 <div className="icons">
                                                     <div className="left-icon">
                                                         {quiz.published ? (
-                                                            <button onClick={() => togglePublished(quiz._id)}>
+                                                            <button onClick={() => togglePublished(quiz._id)} disabled={currentUserType === "STUDENT"}>
                                                                 <IoIosCheckmarkCircle className="checkmark" />
                                                             </button>
                                                         ) : (
-                                                            <button onClick={() => togglePublished(quiz._id)}>
+                                                            <button onClick={() => togglePublished(quiz._id)} disabled={currentUserType === "STUDENT"}>
                                                                 <FcCancel className="cancel" />
                                                             </button>
                                                         )}
                                                     </div>
+                                                    {currentUserType !== "STUDENT" &&
                                                     <ContextMenu
                                                         quiz={quiz}
                                                         togglePublished={togglePublished}
                                                         deleteQuiz={deleteQuiz}
-                                                    />
+                                                    />}
                                                 </div>
                                             </div>
                                         </Accordion.Body>
