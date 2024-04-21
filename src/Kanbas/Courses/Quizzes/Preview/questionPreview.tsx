@@ -16,7 +16,7 @@ export default function QuestionPreview({ question, answers}: { question: Questi
                 {question.title}
                 {question.type !== "MULTIPLE_FILL_IN_THE_BLANK" ? <form className="answer-choices">
                     {answers.map((answer: any, index: number) => (
-                        <div>
+                        <div key={index}>
                             <hr className="q-separator" />
                             <input type="radio" id={`answer${index}`} name="answer" value={answer.text} />
                             <label htmlFor={`answer${index}`}>{answer.text}</label>
@@ -24,7 +24,7 @@ export default function QuestionPreview({ question, answers}: { question: Questi
                     ))}
                 </form> : <form className="answer-choices">
                     {answers.map((answer: any, index: number) => (
-                        <div>
+                        <div key={index}>
                             <hr className="q-separator" />
                             {index + 1}. <input type="text" id={`answer${index}`} name="answer" defaultValue="" />
                         </div>
