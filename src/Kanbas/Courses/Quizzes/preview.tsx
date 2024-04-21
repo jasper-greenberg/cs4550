@@ -128,7 +128,7 @@ export default function QuizPreview() {
                         {quiz?.questions[currentQuestion].answers.map((answer: any, index: number) => (
                             <div>
                                 <hr className="q-separator"/>
-                                <input type="text" id={`answer${index}`} name="answer" defaultValue="" />
+                                {index + 1}. <input type="text" id={`answer${index}`} name="answer" defaultValue="" />
                             </div>
                         ))}
                     </form>}
