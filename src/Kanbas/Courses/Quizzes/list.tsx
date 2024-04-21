@@ -145,7 +145,7 @@ export default function Quizzes() {
             due_date: new Date(),
             available_date: new Date(),
             available_until_date: new Date(),
-            questions: [],
+            questions: []
         };
         const createdQuiz = await client.createQuiz(newQuiz);
         navigate(`${location.pathname}/${createdQuiz._id}/Edit`);
@@ -155,13 +155,13 @@ export default function Quizzes() {
 
     return (
         <div className="container custom-container">
-           
+
             {currentUserType !== "STUDENT" &&
-            <div className="row mb-3">
-                <div className="col-12 text-end">
-                    <button className="btn btn-primary add-quiz-button" onClick={createQuizAndRedirect}>+ Quiz</button>
-                </div>
-            </div>}
+                <div className="row mb-3">
+                    <div className="col-12 text-end">
+                        <button className="btn btn-primary add-quiz-button" onClick={createQuizAndRedirect}>+ Quiz</button>
+                    </div>
+                </div>}
             <div className="row">
                 <div className="col-12">
                     {[...groups].map((group, groupIndex) => (
@@ -180,7 +180,7 @@ export default function Quizzes() {
                                     {translations[group as keyof typeof translations]}
                                 </Accordion.Header>
                                 {quizzes
-                                    .filter((quiz): boolean => quiz.group.toString() === group)
+                                    .filter((quiz) => quiz.group.toString() === group)
                                     .map((quiz) => (
                                         <Accordion.Body
                                             bsPrefix="custom-body accordion-body"
@@ -191,14 +191,14 @@ export default function Quizzes() {
                                                 <div className={`quiz-info ${quiz.published ? "published" : ""}`}></div>
                                                 <RxRocket className={`rocket ${quiz.published ? "published" : ""}`} />
                                                 <div>
-                                                    {quiz.published || currentUserType !== "STUDENT" ? 
-                                                    <Link
-                                                        to={{ pathname: `${location.pathname}/${quiz._id}` }}
-                                                        state={{ quiz: quiz }}
-                                                        className="quiz-title"
-                                                    >
-                                                        {quiz.title}
-                                                    </Link> : <div className="quiz-title unpublished">{quiz.title}</div>}
+                                                    {quiz.published || currentUserType !== "STUDENT" ?
+                                                        <Link
+                                                            to={{ pathname: `${location.pathname}/${quiz._id}` }}
+                                                            state={{ quiz: quiz }}
+                                                            className="quiz-title"
+                                                        >
+                                                            {quiz.title}
+                                                        </Link> : <div className="quiz-title unpublished">{quiz.title}</div>}
                                                     <div className="quiz-meta">
                                                         <div>{renderQuizStatus(quiz)}</div>
                                                         <span>
@@ -226,11 +226,11 @@ export default function Quizzes() {
                                                         )}
                                                     </div>
                                                     {currentUserType !== "STUDENT" &&
-                                                    <ContextMenu
-                                                        quiz={quiz}
-                                                        togglePublished={togglePublished}
-                                                        deleteQuiz={deleteQuiz}
-                                                    />}
+                                                        <ContextMenu
+                                                            quiz={quiz}
+                                                            togglePublished={togglePublished}
+                                                            deleteQuiz={deleteQuiz}
+                                                        />}
                                                 </div>
                                             </div>
                                         </Accordion.Body>

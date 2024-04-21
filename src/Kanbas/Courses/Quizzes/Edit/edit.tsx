@@ -5,6 +5,7 @@ import * as client from "../client";
 import { Quiz } from "../client";
 
 import "../details.css";
+import "./edit.css";
 
 import EditDetails from "./details";
 import EditQuestions from "./questions";
@@ -32,26 +33,26 @@ export default function QuizEdit() {
         }
     }, [quiz, quizId]);
 
-    const [selectedTab, setSelectedTab] = useState('Details');
+    const [selectedTab, setSelectedTab] = useState("Details");
 
     return (
         <div>
             <div className="container custom-container">
                 <nav className="nav nav-tabs mt-2">
                     <button
-                        onClick={() => setSelectedTab('Details')}
-                        className={`nav-link ${selectedTab === 'Details' ? 'active' : ''}`}
+                        onClick={() => setSelectedTab("Details")}
+                        className={`nav-link custom-nav-link ${selectedTab === "Details" ? "active" : ""}`}
                     >
                         Details
                     </button>
                     <button
-                        onClick={() => setSelectedTab('Questions')}
-                        className={`nav-link ${selectedTab === 'Questions' ? 'active' : ''}`}
+                        onClick={() => setSelectedTab("Questions")}
+                        className={`nav-link custom-nav-link ${selectedTab === "Questions" ? "active" : ""}`}
                     >
                         Questions
                     </button>
                 </nav>
-                {selectedTab === 'Details' ? <EditDetails /> : <EditQuestions />}
+                {selectedTab === "Details" ? <EditDetails quizArg={quiz} /> : <EditQuestions />}
             </div>
         </div>
     );

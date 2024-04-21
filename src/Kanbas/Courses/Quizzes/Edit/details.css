@@ -1,0 +1,54 @@
+.details-container {
+    margin-top: 15px;
+}
+
+.form-group .form-control .custom-form {
+    width: 60%;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.custom-label {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.editor-container {
+    margin-bottom: 5px;
+}
+
+.options-label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-check,
+.form-group {
+    margin-bottom: 0.8em;
+}
+
+.checkbox-button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-button-group .save-button {
+    color: white;
+    background-color: #d41b2c;
+}
+
+
+.quiz-button-group .save-button {
+    background-color: var(--neu-color);
+    border-color: #b51726;
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+.quiz-button-group .save-button:hover {
+    background-color: #ca1a2a;
+    border-color: #ca1a2a;
+    color: white;
+}
