@@ -22,6 +22,7 @@ export default function UserTable() {
         firstName: "",
         lastName: "",
         role: "USER",
+        courses: [],
     });
 
     const createUser = async () => {
