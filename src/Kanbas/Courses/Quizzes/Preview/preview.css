@@ -32,7 +32,8 @@ h3 {
     padding-top: 10px;
 }
 
-.quiz-button-group button, .quiz-button-group a {
+.quiz-button-group button,
+.quiz-button-group a {
     margin-left: 5px;
     color: black;
     background-color: whitesmoke;
@@ -41,7 +42,8 @@ h3 {
     text-decoration: none; /* Removes the underline from links */
 }
 
-.quiz-button-group button:hover, .quiz-button-group a:hover {
+.quiz-button-group button:hover,
+.quiz-button-group a:hover {
     color: #2d3b45;
     background-color: #e8e8e8;
     border-color: #aaa;
@@ -51,7 +53,7 @@ h3 {
     display: flex;
     align-items: center;
     padding-left: 7px;
-    padding-right: 7px; 
+    padding-right: 7px;
 }
 
 .icon-container.wide {
@@ -70,7 +72,7 @@ h3 {
     color: #c23b0b;
     border-radius: 5px;
     padding: 10px;
-    
+
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
@@ -101,7 +103,7 @@ h3 {
     margin-top: 30px;
 }
 
-.next { 
+.next {
     justify-content: flex-end;
 }
 
@@ -109,7 +111,7 @@ h3 {
     padding-right: 1px;
 }
 
-.back { 
+.back {
     justify-content: flex-start;
 }
 
@@ -118,7 +120,8 @@ h3 {
     margin-left: 0px;
 }
 
-.back .small-icon, .next .small-icon {
+.back .small-icon,
+.next .small-icon {
     margin-right: 0px;
 }
 
@@ -150,10 +153,10 @@ a.btn.red:hover {
     align-items: center;
     border: solid 1px #aaa;
     border-top: 0px;
-    padding: 20px
+    padding: 20px;
 }
 
-.answer-choices li{
+.answer-choices li {
     list-style-type: none;
 }
 
@@ -173,9 +176,15 @@ a.btn.red:hover {
     list-style-type: none;
 }
 
-.question-list a {
+.question-list button {
     color: #b51726;
     text-decoration: none;
+    background: none;
+    border: none
+}
+
+.question-list button:hover {
+    text-decoration: underline;
 }
 
 .question-list a.bold {

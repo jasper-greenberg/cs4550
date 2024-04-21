@@ -1,6 +1,8 @@
+import "./details.css"
+
 export default function EditQuestions() {
     return (
-        <div>
+        <div className="custom-container">
             <h1>Edit Questions</h1>
         </div>
     );

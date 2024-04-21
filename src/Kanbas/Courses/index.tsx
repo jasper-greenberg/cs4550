@@ -9,7 +9,7 @@ import Home from "./Home";
 import Assignments from "./Assignments";
 import Quizzes from "./Quizzes/list";
 import QuizDetails from "./Quizzes/details";
-import QuizPreview from "./Quizzes/preview";
+import QuizPreview from "./Quizzes/Preview/preview";
 import QuizEdit from "./Quizzes/Edit/edit";
 
 const API_BASE = process.env.REACT_APP_API_BASE;

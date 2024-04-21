@@ -127,7 +127,7 @@ export default function EditDetails({ quizArg }: { quizArg: any }) {
     }
 
     return (
-        <div className="details-container">
+        <div className="custom-container">
             <div className="form-group">
                 <input type="text" className="form-control custom-form" placeholder="Quiz Title" name="title" value={quiz.title} onChange={handleInputChange} />
 

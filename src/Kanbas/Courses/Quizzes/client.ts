@@ -32,7 +32,7 @@ export type Type = Quiz["type"];
 export type Group = Quiz["group"];
 export type ShowCorrectAnswers = Quiz["show_correct_answers"];
 
-interface Question {
+export interface Question {
     id: string;
     type: "MULTIPLE_CHOICE" | "TRUE_FALSE" | "MULTIPLE_FILL_IN_THE_BLANK";
     title: string;
@@ -40,7 +40,7 @@ interface Question {
     answers: Answer[];
 }
 
-interface Answer {
+export interface Answer {
     text: string;
     correct: boolean;
 }
