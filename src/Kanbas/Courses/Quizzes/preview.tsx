@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 
-import { IoAlertCircleOutline } from "react-icons/io5";
-import { GoTriangleRight, GoTriangleLeft } from "react-icons/go";
+import { IoAlertCircleOutline,  } from "react-icons/io5";
+import { GoTriangleRight, GoTriangleLeft, GoQuestion } from "react-icons/go";
+import { GrEdit } from "react-icons/gr";
 
 import * as client from "./client";
 import { Quiz } from "./client";
@@ -78,16 +79,19 @@ export default function QuizPreview() {
         answers = shuffleAnswers(quiz?.questions[currentQuestion].answers);
     }
 
-    
+    useEffect(() => {
+        const radioButtons = document.querySelectorAll("input[type=radio]");
+        radioButtons.forEach((radio) => {
+            (radio as HTMLInputElement).checked = false;
+        });
+    }, [currentQuestion]);    
 
     return (
         <div className="container custom-container">
             <div className="quiz-button-group">
                 <Link to={`${path}`.replace("/Preview", "")} state={{quiz: quiz}} className="btn">                                            
                     Exit Preview
-                </Link>
-
-                
+                </Link>                
             </div>
             <hr className="separator" />
             <h3>{quiz?.title}</h3>
@@ -116,12 +120,12 @@ export default function QuizPreview() {
                         {answers.map((answer: any, index: number) => (
                             <div>
                                 <hr className="q-separator"/>
-                                <input type="radio" id={`answer${index}`} name="answer" value={answer.text} checked={false} />
+                                <input type="radio" id={`answer${index}`} name="answer" value={answer.text} />
                                 <label htmlFor={`answer${index}`}>{answer.text}</label>
                             </div>
                         ))}
                     </form> : <form className="answer-choices">
-                        {answers.map((answer: any, index: number) => (
+                        {quiz?.questions[currentQuestion].answers.map((answer: any, index: number) => (
                             <div>
                                 <hr className="q-separator"/>
                                 <input type="text" id={`answer${index}`} name="answer" defaultValue="" />
@@ -143,7 +147,25 @@ export default function QuizPreview() {
                     Submit Quiz
                 </Link>
             </div>
-            
+            <div className="quiz-button-group">
+                <Link to={`${path}/Edit`.replace("/Preview", "")} state={{quiz: quiz}} className="btn icon-container wide">
+                    <GrEdit className="small-icon edit" />
+                    Keep Editing This Quiz
+                </Link>            
+            </div>
+            <div className="question-list">
+                <h4>Questions</h4>
+                <ul>
+                    {quiz?.questions.map((question, index) => (
+                        <li key={index}>
+                            <a className={currentQuestion === index ? "bold" : ""} onClick={() => setCurrentQuestion(index)}>
+                                <GoQuestion className="small-icon grey" />
+                                Question {index + 1}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

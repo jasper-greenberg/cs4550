@@ -54,6 +54,12 @@ h3 {
     padding-right: 7px; 
 }
 
+.icon-container.wide {
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 30px;
+}
+
 .small-icon {
     font-size: 1.3em;
     margin-right: 5px;
@@ -161,4 +167,17 @@ a.btn.red:hover {
 
 .answer-choices input[type="radio"]:checked + label::before {
     background-color: #b51726; /* Change to your desired color */
+}
+
+.question-list ul {
+    list-style-type: none;
+}
+
+.question-list a {
+    color: #b51726;
+    text-decoration: none;
+}
+
+.question-list a.bold {
+    font-weight: bold;
 }
