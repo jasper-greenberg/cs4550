@@ -1,33 +1,55 @@
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 
 import "./index.css";
 
+import { Course } from "../client";
+import * as client from "../client";
+import * as userClient from "../Users/client";
+import { setUser } from "../Users/reducer";
+
 function Dashboard({
     courses,
     course,
     setCourse,
-    addNewCourse,
-    deleteCourse,
+    setCourses,
     updateCourse,
 }: {
     courses: any[];
     course: any;
     setCourse: (course: any) => void;
-    addNewCourse: () => void;
-    deleteCourse: (course: any) => void;
+    setCourses: (courses: Course[]) => void;
     updateCourse: () => void;
 }) {
-    const currentUser = useSelector((state: any) => state.userReducer.currentUser);
- 
-    if (currentUser != null){
+    const dispatch = useDispatch();
+
+    let currentUser = useSelector((state: any) => state.userReducer.currentUser);
+
+    if (currentUser != null) {
         courses = courses.filter((course) => currentUser.courses.includes(course._id));
     } else {
         courses = [];
+    }
+
+    const addNewCourse = async () => {
+        const newCourse = await client.createCourse(course);
+        currentUser = { ...currentUser, courses: [...currentUser.courses, newCourse._id] };
+        dispatch(setUser(currentUser));
+        setCourses([...courses, newCourse]);
+        await userClient.updateUser(currentUser);
+    };
+
+    const deleteCourse = async (courseId: string) => {
+        const updatedCourses = courses.filter((course) => course._id !== courseId);
+        currentUser = { ...currentUser, courses: updatedCourses.map((course) => course._id) };
+        dispatch(setUser(currentUser));
+        setCourses(updatedCourses);
+        await userClient.updateUser(currentUser);
+        await client.deleteCourse(courseId);
     }
 
     return (

@@ -13,6 +13,7 @@ export interface User {
     role: string;
     firstName: string;
     lastName: string;
+    courses: string[];
 }
 
 export const signin = async (credentials: User) => {

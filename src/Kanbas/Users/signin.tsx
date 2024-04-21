@@ -13,7 +13,7 @@ export default function SignIn() {
     const dispatch = useDispatch();
     const currentUser = useSelector((state: any) => state.userReducer.currentUser);
 
-    const [credentials, setCredentials] = useState<User>({ _id: "", username: "", password: "", firstName: "", lastName: "", role: "USER" });
+    const [credentials, setCredentials] = useState<User>({ _id: "", username: "", password: "", firstName: "", lastName: "", role: "USER", courses: []});
     const navigate = useNavigate();
 
     const signIn = async () => {
