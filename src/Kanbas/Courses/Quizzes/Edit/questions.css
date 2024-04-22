@@ -1,0 +1,75 @@
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.question-header .inline-elements {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.points-input-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.points-input-container input {
+    width: 70px;
+    text-align: left;
+}
+
+.points-input-container label {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.bold-label {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.correct-tag {
+    color: #09874b;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5px;
+    margin-bottom: 15px;
+}
+
+.answer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.answer-item .form-control {
+    display: inline-block;
+    width: 75%;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+    margin-left: -5px;
+}
+
+.outer-delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.quiz-button-group.editor {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}

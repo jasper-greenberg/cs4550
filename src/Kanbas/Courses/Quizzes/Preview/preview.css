@@ -169,7 +169,7 @@ a.btn.red:hover {
 }
 
 .answer-choices input[type="radio"]:checked + label::before {
-    background-color: #b51726; /* Change to your desired color */
+    background-color: #b51726;
 }
 
 .question-list ul {

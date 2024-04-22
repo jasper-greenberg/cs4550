@@ -52,7 +52,7 @@ export default function QuizEdit() {
                         Questions
                     </button>
                 </nav>
-                {selectedTab === "Details" ? <EditDetails quizArg={quiz} /> : <EditQuestions />}
+                {selectedTab === "Details" ? <EditDetails quizArg={quiz} /> : <EditQuestions quizArg={quiz} />}
             </div>
         </div>
     );

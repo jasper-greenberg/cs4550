@@ -1,6 +1,8 @@
+import "./preview.css"
+
 import { Question, Answer } from "../client";
 
-export default function QuestionPreview({ question, answers}: { question: Question, answers: Answer[]}) {
+export default function QuestionPreview({ question, answers }: { question: Question, answers: Answer[] }) {
     return (
         <div>
             <div className="question-head">
@@ -8,7 +10,7 @@ export default function QuestionPreview({ question, answers}: { question: Questi
                 <div>
                     <h4>
                         {question.points}
-                        {question.points > 1 ? <span>pts</span> : <span>pt</span>}
+                        <span> pts</span>
                     </h4>
                 </div>
             </div>
