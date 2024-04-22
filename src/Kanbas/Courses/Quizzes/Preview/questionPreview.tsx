@@ -3,6 +3,7 @@ import { Question, Answer } from "../client";
 export default function QuestionPreview({ question, answers}: { question: Question, answers: Answer[]}) {
     return (
         <div>
+            
             <div className="question-head">
                 <h4>{question.id}</h4>
                 <div>
