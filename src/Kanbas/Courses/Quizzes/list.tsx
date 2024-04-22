@@ -180,6 +180,7 @@ export default function Quizzes() {
                                     {translations[group as keyof typeof translations]}
                                 </Accordion.Header>
                                 {quizzes
+                                    .filter((quiz) => currentUserType !== "STUDENT" || quiz.published || currentUserType !== "STUDENT")
                                     .filter((quiz) => quiz.group.toString() === group)
                                     .map((quiz) => (
                                         <Accordion.Body
