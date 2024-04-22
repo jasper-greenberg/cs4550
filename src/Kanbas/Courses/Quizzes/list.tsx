@@ -114,15 +114,14 @@ export default function Quizzes() {
      * @param {Quiz} quiz - The ID of the quiz to delete.
      */
     const deleteQuiz = async (quiz: Quiz) => {
+        const updatedQuizzes = quizzes.filter((innerQuiz) => innerQuiz._id !== quiz._id);
+        setQuizzes(updatedQuizzes);
+
+        const groupsSet = new Set(updatedQuizzes.map((quiz: Quiz) => quiz.group));
+        setGroups(Array.from(groupsSet) as string[]);
+
         // Call the deleteQuiz function from the client module.
         await client.deleteQuiz(quiz);
-
-        // Update the quizzes state.
-        // The function passed to setQuizzes receives the previous quizzes state and returns the new state.
-        setQuizzes((prevQuizzes) =>
-            // Filter the previous quizzes state to remove the quiz with the matching ID.
-            prevQuizzes.filter((innerQuiz) => innerQuiz._id !== quiz._id)
-        );
     };
 
     const createQuizAndRedirect = async () => {

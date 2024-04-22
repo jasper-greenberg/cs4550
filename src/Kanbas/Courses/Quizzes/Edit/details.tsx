@@ -154,7 +154,7 @@ export default function EditDetails({ quizArg }: { quizArg: any }) {
                     <option value="Quizzes">Quizzes</option>
                     <option value="Exams">Exams</option>
                     <option value="Assignments">Assignments</option>
-                    <option value="Project">Project</option>
+                    <option value="Projects">Projects</option>
                 </select>
 
                 <div className="form-group">
