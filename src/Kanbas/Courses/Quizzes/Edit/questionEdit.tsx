@@ -117,32 +117,7 @@ export default function QuestionEdit({ question, deleteQuestion, updateQuestion,
                 />
                 <div className="answer-choices">
                     <label className="bold-label">Answers:</label>
-                    {localQuestion.type === "TRUE_FALSE" ? (
-                        ["True", "False"].map((text, index) => (
-                            <div key={index}>
-                                <div className="answer-item">
-                                    <input
-                                        type="radio"
-                                        id={`answer${index}`}
-                                        name="correct"
-                                        value={index}
-                                        checked={localQuestion.answers[index]?.correct}
-                                        onChange={handleInputChange}
-                                    />
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        id={`answerText${index}`}
-                                        name={`answerText${index}`}
-                                        value={text}
-                                        readOnly
-                                    />
-                                    {localQuestion.answers[index]?.correct && <span className="correct-tag">[CORRECT]</span>}
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        localQuestion.answers.map((answer, index) => (
+                    {localQuestion.answers.map((answer, index) => (
                             <div key={index}>
                                 <div className="answer-item">
                                     <input
@@ -172,14 +147,12 @@ export default function QuestionEdit({ question, deleteQuestion, updateQuestion,
                                 </div>
                             </div>
                         ))
-                    )}
+                    }
                 </div>
 
-                {localQuestion.type !== "TRUE_FALSE" && (
-                    <div className="add-answer-button-container question-list">
-                        <button onClick={addAnswer}>+ Add Another Answer</button>
-                    </div>
-                )}
+                <div className="add-answer-button-container question-list">
+                    <button onClick={addAnswer}>+ Add Another Answer</button>
+                </div>
 
                 <div className="quiz-button-group editor">
                     <button type="button" className="btn save-button" onClick={saveQuestion}>Save</button>
