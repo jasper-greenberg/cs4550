@@ -83,10 +83,14 @@ export default function QuizPreview() {
         setCurrentQuestion((prevIndex) => (prevIndex - 1) % quiz?.questions.length);
     };
 
-    let answers = quiz?.questions[currentQuestion].answers;
+    let answers;
 
-    if (quiz.shuffle_answers) {
-        answers = shuffleAnswers(quiz?.questions[currentQuestion].answers);
+    if (quiz.questions.length > 0) {
+        answers = quiz?.questions[currentQuestion].answers;
+
+        if (quiz.shuffle_answers) {
+            answers = shuffleAnswers(quiz?.questions[currentQuestion].answers);
+        }
     }
 
     useEffect(() => {
@@ -113,40 +117,44 @@ export default function QuizPreview() {
                 Started: <span>{cleanDate(startDate)}</span>
             </div>
             <h3>Quiz Instructions</h3>
+            <div dangerouslySetInnerHTML={{ __html: quiz?.description }} />
             <hr className="separator" />
-            <div className="question">
-                <QuestionPreview question={quiz?.questions[currentQuestion]} answers={answers} />
+            {quiz?.questions.length > 0 ? 
+                <div>
+                    <div className="question">
+                    <QuestionPreview question={quiz?.questions[currentQuestion]} answers={answers} />
 
-                <div className={`next-back quiz-button-group ${currentQuestion === 0 ? 'next' : ''} ${currentQuestion + 1 === quiz?.questions.length ? 'back' : ''}`}>
-                    {currentQuestion !== 0 && <div className="back"><button className="btn icon-container" onClick={previousQuestion}><GoTriangleLeft className="small-icon" />Back</button></div>}
-                    {currentQuestion + 1 !== quiz?.questions.length && <div className="next"><button className="btn icon-container" onClick={nextQuestion}>Next<GoTriangleRight className="small-icon" /></button></div>}
-                </div>
-            </div>
-            <div className="quiz-button-group save-submit">
-                Quiz saved at {cleanTime(currentTime)}
-                <Link to={`${path}`.replace("/Preview", "")} state={{ quiz: quiz }} className={`btn ${currentQuestion + 1 !== quiz?.questions.length ? '' : 'red'}`}>
-                    Submit Quiz
-                </Link>
-            </div>
-            <div className="quiz-button-group">
-                <Link to={`${path}/Edit`.replace("/Preview", "")} state={{ quiz: quiz }} className="btn icon-container wide">
-                    <GrEdit className="small-icon edit" />
-                    Keep Editing This Quiz
-                </Link>
-            </div>
-            <div className="question-list">
-                <h4>Questions</h4>
-                <ul>
-                    {quiz?.questions.map((question, index) => (
-                        <li key={index}>
-                            <button className={currentQuestion === index ? "bold" : ""} onClick={() => setCurrentQuestion(index)}>
-                                <GoQuestion className="small-icon grey" />
-                                Question {index + 1}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                    <div className={`next-back quiz-button-group ${currentQuestion === 0 ? 'next' : ''} ${currentQuestion + 1 === quiz?.questions.length ? 'back' : ''}`}>
+                        {currentQuestion !== 0 && <div className="back"><button className="btn icon-container" onClick={previousQuestion}><GoTriangleLeft className="small-icon" />Back</button></div>}
+                        {currentQuestion + 1 !== quiz?.questions.length && <div className="next"><button className="btn icon-container" onClick={nextQuestion}>Next<GoTriangleRight className="small-icon" /></button></div>}
+                    </div>
+                    </div>
+                    <div className="quiz-button-group save-submit">
+                        Quiz saved at {cleanTime(currentTime)}
+                        <Link to={`${path}`.replace("/Preview", "")} state={{ quiz: quiz }} className={`btn ${currentQuestion + 1 !== quiz?.questions.length ? '' : 'red'}`}>
+                            Submit Quiz
+                        </Link>
+                    </div>
+                    <div className="quiz-button-group">
+                        <Link to={`${path}/Edit`.replace("/Preview", "")} state={{ quiz: quiz }} className="btn icon-container wide">
+                            <GrEdit className="small-icon edit" />
+                            Keep Editing This Quiz
+                        </Link>
+                    </div>
+                    <div className="question-list">
+                        <h4>Questions</h4>
+                        <ul>
+                            {quiz?.questions.map((question, index) => (
+                                <li key={index}>
+                                    <button className={currentQuestion === index ? "bold" : ""} onClick={() => setCurrentQuestion(index)}>
+                                        <GoQuestion className="small-icon grey" />
+                                        Question {index + 1}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div> : <h3>This quiz has no questions.</h3>}
         </div>
     );
 }
