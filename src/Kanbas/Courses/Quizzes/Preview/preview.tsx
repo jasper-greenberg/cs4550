@@ -132,9 +132,14 @@ export default function QuizPreview() {
                                 </div>
                             </>
                         ) : (
-                            quiz?.questions.map((question, index) => (
-                                <QuestionPreview key={index} question={question} answers={answers} />
-                            ))
+                            quiz?.questions.map((question, index) => {
+                                const answersForQuestion = quiz.shuffle_answers ? shuffleAnswers(question.answers) : question.answers;
+                                return (
+                                    <div key={index}>
+                                        <QuestionPreview question={question} answers={answersForQuestion} />
+                                    </div>
+                                );
+                            })
                         )}
                     </div>
                     <div className="quiz-button-group save-submit">
