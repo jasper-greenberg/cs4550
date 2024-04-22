@@ -6,7 +6,7 @@ import { GoTriangleRight, GoTriangleLeft, GoQuestion } from "react-icons/go";
 import { GrEdit } from "react-icons/gr";
 
 import * as client from "../client";
-import { Quiz } from "../client";
+import { Quiz, Answer } from "../client";
 
 import "./preview.css";
 import QuestionPreview from "./questionPreview";
@@ -83,7 +83,7 @@ export default function QuizPreview() {
         setCurrentQuestion((prevIndex) => (prevIndex - 1) % quiz?.questions.length);
     };
 
-    let answers;
+    let answers: Answer[] = [];
 
     if (quiz.questions.length > 0) {
         answers = quiz?.questions[currentQuestion].answers;
@@ -119,15 +119,23 @@ export default function QuizPreview() {
             <h3>Quiz Instructions</h3>
             <div dangerouslySetInnerHTML={{ __html: quiz?.description }} />
             <hr className="separator" />
-            {quiz?.questions.length > 0 ? 
+            {quiz?.questions.length > 0 ?
                 <div>
                     <div className="question">
-                    <QuestionPreview question={quiz?.questions[currentQuestion]} answers={answers} />
+                        {quiz?.one_question_at_a_time ? (
+                            <>
+                                <QuestionPreview question={quiz?.questions[currentQuestion]} answers={answers} />
 
-                    <div className={`next-back quiz-button-group ${currentQuestion === 0 ? 'next' : ''} ${currentQuestion + 1 === quiz?.questions.length ? 'back' : ''}`}>
-                        {currentQuestion !== 0 && <div className="back"><button className="btn icon-container" onClick={previousQuestion}><GoTriangleLeft className="small-icon" />Back</button></div>}
-                        {currentQuestion + 1 !== quiz?.questions.length && <div className="next"><button className="btn icon-container" onClick={nextQuestion}>Next<GoTriangleRight className="small-icon" /></button></div>}
-                    </div>
+                                <div className={`next-back quiz-button-group ${currentQuestion === 0 ? 'next' : ''} ${currentQuestion + 1 === quiz?.questions.length ? 'back' : ''}`}>
+                                    {currentQuestion !== 0 && <div className="back"><button className="btn icon-container" onClick={previousQuestion}><GoTriangleLeft className="small-icon" />Back</button></div>}
+                                    {currentQuestion + 1 !== quiz?.questions.length && <div className="next"><button className="btn icon-container" onClick={nextQuestion}>Next<GoTriangleRight className="small-icon" /></button></div>}
+                                </div>
+                            </>
+                        ) : (
+                            quiz?.questions.map((question, index) => (
+                                <QuestionPreview key={index} question={question} answers={answers} />
+                            ))
+                        )}
                     </div>
                     <div className="quiz-button-group save-submit">
                         Quiz saved at {cleanTime(currentTime)}
