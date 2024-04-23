@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import NavBar from "./NavBar";
@@ -19,14 +19,7 @@ function Courses() {
     const COURSES_API = `${API_BASE}/api/courses`;
     const [course, setCourse] = useState<any>({ _id: "" });
 
-    const isFirstRender = useRef(true);
-
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-
         const findCourseById = async (courseId?: string) => {
             const response = await axios.get(`${COURSES_API}/${courseId}`);
             setCourse(response.data);
