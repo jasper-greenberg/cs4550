@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -28,7 +28,6 @@ export default function Quizzes() {
     const { courseId } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
-    const isFirstRender = useRef(true);
 
     if (!courseId) {
         throw new Error("courseId is required");
@@ -45,11 +44,6 @@ export default function Quizzes() {
     };
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
-            return;
-        }
-
         const fetchQuizzes = async () => {
             const quizzes = await client.findQuizzesByCourseId(courseId);
             setQuizzes(quizzes);
